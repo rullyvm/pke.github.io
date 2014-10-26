@@ -12,8 +12,8 @@
     <title>{{ page.title }}</title>
     <meta property="og:url" content="https://mayday.us{{ page.url }}"/>
     <meta property="og:image" content="{% if page.og_image %}{{ page.og_image }}{% else %}{{root_path}}/images/ProfilePic.jpg{% endif %}"/>
-    <meta property="og:title" content="{% if page.og_title %}{{ page.og_title }}{% else %}MAYDAY: Democracy needs an upgrade. Act now.{% endif %}"/>
-    <meta property="og:description" content="{% if page.og_description %}{{ page.og_description }}{% else %}Money has corrupted politics. We’re a Crowdfunded SuperPAC to end all SuperPACs -- Join us!{% endif %}"/>
+    <meta property="og:title" content="{% if page.og_title %}{{ page.og_title | xml_escape }}{% else %}MAYDAY: Democracy needs an upgrade. Act now.{% endif %}"/>
+    <meta property="og:description" content="{% if page.og_description %}{{ page.og_description | xml_escape }}{% else %}Money has corrupted politics. We’re a Crowdfunded SuperPAC to end all SuperPACs -- Join us!{% endif %}"/>
     {% if page.twitter_description %}<meta content="{{twitter_description}}" name="twitter:description" />{% endif %}
   {% else %}
     {{ meta_content }}
