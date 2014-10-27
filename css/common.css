@@ -195,6 +195,7 @@ footer {color: #999;background-color:black;}
 .pledge:hover {background: #b73230;text-decoration: none;color: #fff;}
 
 .sidebar .block {padding-top: 30px;}
+.subpage-content .embed-responsive, .candidate-body .embed-responsive {margin-bottom:20px;}
 
 .sidebar h1,
 .sidebar h2,
