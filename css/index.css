@@ -251,12 +251,12 @@ article {
   font-size: 140%
 }
 .article-details {
+  font-family: 'Roboto', helvetica, sans-serif;
+  font-weight: 400;
   padding-top: 15px;
   padding-bottom:80px
 }
   .article-details h5 {
-    font-family: 'Roboto', helvetica, sans-serif;
-    font-weight: 400;
     font-size:90%;
     color:#777777
   }
@@ -268,7 +268,6 @@ article {
     line-height: 140%
   }
   .article-details p {
-    font-family: 'Roboto', helvetica, sans-serif;
     font-weight: 400;
     font-size: 100%;
     line-height: 150%;
@@ -276,20 +275,23 @@ article {
     padding-bottom: 3px
   }
   .article-details a {
-    font-family: 'Roboto', helvetica, sans-serif;
     font-weight: 900;
     color: #D01424;
     text-decoration:underline;
     text-transform:uppercase
   }
   .article-details .btn-cta{
-    font-family: 'Roboto', helvetica, sans-serif;
     font-weight: 900;
     font-size: 140%;
     color: #FFFFFF;
     text-decoration:none
   }
 
+@media screen and (max-width: 992px) {
+  .blog-image {
+    display:none;
+  }
+}
 @media screen and (max-width: 800px) {
   .jumbotron > .container{
     background: rgba(255,255,255,0.8);

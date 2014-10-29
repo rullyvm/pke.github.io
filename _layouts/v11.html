@@ -46,7 +46,7 @@
         <!-- Doing the following manually until have time to write JS -->
         <article class="col-md-4">
           <div>
-            <a class="blog-image" href="/campaigns/paid-for-by/"><img src="/images/blog/20141016-PAID_FOR_BY-still.jpg" /></a>
+            <a class="blog-image ir" href="/campaigns/paid-for-by/"  style="background-image:url('/images/blog/20141016-PAID_FOR_BY-still.jpg');"></a>
             <div class="article-details">
               <h5>2014-10-16</h5>
               <h4>Jason Alexander: Paid For By</h4>
@@ -68,7 +68,7 @@
         </article> -->
         <article class="col-md-4">
           <div>
-            <h5 class="blog-image ir" style="background-image:url('/images/blog/20141009-contest-blog-2.jpg');"></h5>
+            <a class="blog-image ir" href="https://mayday.us/campaigns/maydayin30/" style="background-image:url('/images/blog/20141009-contest-blog-2.jpg');"></a>
             <div class="article-details">
               <h5>2014-10-06</h5>
               <h4>#Maydayin30 Video Contest</h4>
@@ -79,7 +79,7 @@
         </article>
         <article class="col-md-4">
           <div>
-            <a class="blog-image" href="http://blog.mayday.us/post/98805891740/i-just-joined-the-mayday-board"><img src="/images/blog/2014-09-30-zephyr-teachout2.jpg" /></a>
+            <a class="blog-image ir" href="http://blog.mayday.us/post/98805891740/i-just-joined-the-mayday-board" style="background-image:url('/images/blog/2014-09-30-zephyr-teachout2.jpg');"></a>
             <div class="article-details">
               <h5>2014-09-30</h5>
               <h4>Zephyr Teachout joins our board</h4>
@@ -94,99 +94,32 @@
 
   {% include footer.html %}
 
-  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
-  <script>window.jQuery || document.write('<script src="/js/vendor/jquery-1.11.0.min.js"><\/script>')</script>
-
-  <script src="/js/vendor/bootstrap.min.js"></script>
-
-  <script src="/js/plugins.js"></script>
-  <script src="https://cdn.optimizely.com/js/210578001.js"></script>
-
   <script>
 
-  function addCommas(nStr) {
-    nStr += '';
-    x = nStr.split('.');
-    x1 = x[0];
-    x2 = x.length > 1 ? '.' + x[1] : '';
-    var rgx = /(\d+)(\d{3})/;
-    while (rgx.test(x1)) {
-      x1 = x1.replace(rgx, '$1' + ',' + '$2');
-    }
-    return x1 + x2;
-  }
-
-
-  function updateTotals() {
-    jQuery.getJSON('https://pledge.mayday.us/r/total', function(data) {
-      totalRaised = data.totalCents/100 + (1408240.42+1775000);//+offline contributions
-      totalRaised = Math.round(totalRaised);
-      $('#total-donated').text('$' + addCommas(totalRaised));
-    });
-
-    jQuery.getJSON('https://pledge.mayday.us/r/num_pledges',
-      function(data) {
-      $('#total-donors').text(addCommas(data.count+4917+6));//+offline contributions
-    });
-  }
-  // Normalize Carouselw5 Heights - pass in Bootstrap Carousel items.
-  $.fn.carouselHeights = function() {
-
-      var items = $(this),
-          heights = [],
-          tallest;
-
-      var normalizeHeights = function() {
-          items.each(function() {
-              heights.push($(this).height());
-          });
-          tallest = Math.max.apply(null, heights);
-          items.each(function() {
-            console.log('tallest:',tallest)
-              $(this).css('min-height',tallest + 'px');
-          });
-      };
-
-      normalizeHeights();
-
-      $(window).on('resize orientationchange', function () {
-          tallest = 0;
-          heights.length = 0;
-
-          items.each(function() {
-              $(this).css('min-height','0');
-          });
-          normalizeHeights();
+  $(document).ready(function(){
+    $(".jumbotron-content form").validate({
+      rules: {
+        email: {
+              required: true,
+              email: true
+            }
+        }, errorPlacement: function(error, element) {
+            error.appendTo(element.parents('form'));
+        },
       });
+    updateTotals();
 
-  };
-
-  $('input').focus(function(){
-     $("#carousel-jumbotron").carousel('pause');
-  }).blur(function() {
-     $("#carousel-jumbotron").carousel('cycle');
+    $('#carousel-jumbotron').carousel({
+      interval: 20000
+    });
+    $('input').on('focus', function(){
+        $("#carousel-jumbotron").carousel('pause');
+      }).on('blur',function() {
+        $("#carousel-jumbotron").carousel('cycle');
+    });
+    $('#carousel-jumbotron .item').carouselHeights();
+    $("#carousel-jumbotron").carousel('pause');
   });
-
-  // });
-
-    $(document).ready(function(){
-      $(".jumbotron-content form").validate({
-        rules: {
-          email: {
-                required: true,
-                email: true
-              }
-          }, errorPlacement: function(error, element) {
-              error.appendTo(element.parents('form'));
-          },
-        });
-      updateTotals();
-
-      $('#carousel-jumbotron').carousel({
-        interval: 20000
-      });
-      $('#carousel-jumbotron .item').carouselHeights();
-    });
   </script>
 
   {{ footer_content }}
