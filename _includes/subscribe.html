@@ -19,10 +19,11 @@ var validateForm = function() {
     </div>
     <div class="row">
       <form name="subscribeForm" action='https://pledge.mayday.us/r/subscribe' onsubmit='return validateForm();' method='post'>
+        <input type="hidden" name="redirect" value="http://calloutthevote.mayday.us/act/COTV_2014_mayday_info" />
 
         <div class="row">
           <div class="input-group input-group-lg">
-                      <div class="social" id="sidesocial">
+<!--             <div class="social" id="sidesocial">
                       <P>Let's win our democracy back. Can you share with your friends and ask them to join the #MaydayMovement?</P>
               <div class="twitter"><a href="https://twitter.com/home?status=Money%20has%20corrupted%20our%20democracy.%20Can%20we%20fix%20it?%20Act%20now,%20join%20%23MAYDAYUS%20--%20let's%20try%20something%20new:%20https%3A%2F%2Fmayday.us%3F" title="Share on Twitter" target="_blank"><span>Share on Twitter</span></a></div>
               <div class="facebook"><a href="https://www.facebook.com/sharer/sharer.php?u=https://mayday.us" title="Share on Facebook" target="_blank"><span>Share on Facebook</span></a></div>
@@ -30,8 +31,7 @@ var validateForm = function() {
                   <a href='mailto:?to=&subject=A%20Mayday%20call%20for%20our%20democracy&body=The%20Mayday%20Political%20Action%20Committee%20has%20kick-started%20the%20money%20for%20the%20first%20essential%20step%20towards%20a%20Congress%20committed%20to%20fundamental%20reform%20by%202016.%20But%20we%20still%20need%20your%20help%20to%20spread%20the%20word.%20Will%20you%20join%20me%20by%20going%20to%20https%3A%2F%2Fmayday.us%3F'
                   target="_blank" title="Share with Email"><span>Share with Email</span></a>
               </div>
-            </div>
-            <P>The Call Tool is not available right now, we will email you when it's time to get on the phones.  Would you like to tell us a bit more about yourself? </P>
+            </div> -->
             <label>Email (required)</label>
             <input id='email_input' type="email" required name="email" class="form-control">
           </div>

@@ -123,6 +123,19 @@
     line-height: 1em;
     margin-top:5px;
   }
+
+  .carousel-wrap{position:relative;overflow:hidden;}
+  .carousel-control {text-shadow: 0 1px 2px #000; filter: alpha(opacity=100); opacity: .1; }
+    .left.carousel-control, .right.carousel-control{background-image:none;z-index:1000;}
+      .carousel-control .icon-prev,.carousel-control .icon-next,.carousel-control .glyphicon-chevron-left,.carousel-control .glyphicon-chevron-right{top:60%;}
+  .carousel-inner{overflow:hidden;}
+  .carousel-indicators {z-index:1000;bottom: -10px;}
+    .carousel-indicators li{box-shadow: 0 0 3px #000;}
+
+  @media screen and (max-width:991px) {
+    .carousel-control .icon-prev,.carousel-control .icon-next,.carousel-control .glyphicon-chevron-left,.carousel-control .glyphicon-chevron-right{top:93%;}
+  }
+
   @media screen and (max-width: 1200px) {
     .star-image{display:none;}
   }
@@ -239,12 +252,12 @@ article {
   font-size: 140%
 }
 .article-details {
+  font-family: 'Roboto', helvetica, sans-serif;
+  font-weight: 400;
   padding-top: 15px;
   padding-bottom:80px
 }
   .article-details h5 {
-    font-family: 'Roboto', helvetica, sans-serif;
-    font-weight: 400;
     font-size:90%;
     color:#777777
   }
@@ -256,7 +269,6 @@ article {
     line-height: 140%
   }
   .article-details p {
-    font-family: 'Roboto', helvetica, sans-serif;
     font-weight: 400;
     font-size: 100%;
     line-height: 150%;
@@ -264,20 +276,23 @@ article {
     padding-bottom: 3px
   }
   .article-details a {
-    font-family: 'Roboto', helvetica, sans-serif;
     font-weight: 900;
     color: #D01424;
     text-decoration:underline;
     text-transform:uppercase
   }
   .article-details .btn-cta{
-    font-family: 'Roboto', helvetica, sans-serif;
     font-weight: 900;
     font-size: 140%;
     color: #FFFFFF;
     text-decoration:none
   }
 
+@media screen and (max-width: 992px) {
+  .blog-image {
+    display:none;
+  }
+}
 @media screen and (max-width: 800px) {
   .jumbotron > .container{
     background: rgba(255,255,255,0.8);
@@ -294,4 +309,5 @@ article {
   .news-intro{
     padding:0;
   }
+
 }

@@ -3,39 +3,38 @@
 <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
 <!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
 <!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
-<head>
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-  <title>Mayday PAC</title>
-  <meta name="description" content="MAYDAY.US - Democracy needs an upgrade. Act now.">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-
-  <meta property="og:url" content="https://mayday.us/"/>
-  <meta property="og:image" content="https://mayday.us/images/ProfilePic.jpg"/>
-  <meta property="og:title" content="MAYDAY.US: Democracy needs an upgrade. Act now."/>
-  <meta property="og:description" content="Money has corrupted politics. Join MAYDAY.US - the movement to end this corruption."/>
-
-  <link rel="stylesheet" href="/css/bootstrap.min.css">
-  <!-- <link rel="stylesheet" href="css/bootstrap-theme.min.css"> -->
-
-  <script src="/js/vendor/modernizr-2.6.2-respond-1.1.0.min.js"></script>
-
-  <link rel="stylesheet" href="/{{ 'css/common.css' | md5_cache_bust }}">
-  <link rel="stylesheet" href="/{{ 'css/index.css' | md5_cache_bust }}">
-
-  <link href='//fonts.googleapis.com/css?family=Roboto:400,300,500,900' rel='stylesheet' type='text/css'>
-  <link href='//fonts.googleapis.com/css?family=Merriweather:700,400,700italic' rel='stylesheet' type='text/css'>
-  <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
-  <!-- <link href='//fonts.googleapis.com/css?family=Roboto+Condensed' rel='stylesheet' type='text/css'> -->
-</head>
-
+{% include head.html %}
 <body>
   <!--[if lt IE 8]>
       <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
   <![endif]-->
   {% include header.html %}
+  <div class="carousel-wrap">
+    <div id="carousel-jumbotron" class="carousel slide" data-ride="carousel">
+      <!-- Indicators -->
+      <ol class="carousel-indicators">
+        <li data-target="#carousel-jumbotron" data-slide-to="0" class="active"></li>
+        <li data-target="#carousel-jumbotron" data-slide-to="1"></li>
+        <li data-target="#carousel-jumbotron" data-slide-to="2"></li>
+      </ol>
 
-  {% include jumbotrons/20141017-kansas-calls.html%}
+      <!-- Wrapper for slides -->
+      <div class="carousel-inner">
+        <div class="item kansas-calls active">{% include jumbotrons/20141017-kansas-calls.html %}</div>
+        <div class="item winners">{% include jumbotrons/20141025-mayday-in-30-winners.html %}</div>
+        <div class="item time-video">{% include jumbotrons/20141028-time-video.html %}</div>
+
+      </div>
+      <!-- Controls -->
+      <a class="left carousel-control" href="#carousel-jumbotron" role="button" data-slide="prev">
+        <span class="glyphicon glyphicon-chevron-left"></span>
+      </a>
+      <a class="right carousel-control" href="#carousel-jumbotron" role="button" data-slide="next">
+        <span class="glyphicon glyphicon-chevron-right"></span>
+      </a>
+    </div>
+  </div>
+{% include jumbotrons/jumbotron-bottom.html %}
 
   <section class="cross-stitched latest-news">
     <div class="container">
@@ -48,7 +47,7 @@
         <!-- Doing the following manually until have time to write JS -->
         <article class="col-md-4">
           <div>
-            <a class="blog-image" href="/campaigns/paid-for-by/"><img src="/images/blog/20141016-PAID_FOR_BY-still.jpg" /></a>
+            <a class="blog-image ir" href="/campaigns/paid-for-by/"  style="background-image:url('/images/blog/20141016-PAID_FOR_BY-still.jpg');"></a>
             <div class="article-details">
               <h5>2014-10-16</h5>
               <h4>Jason Alexander: Paid For By</h4>
@@ -70,18 +69,18 @@
         </article> -->
         <article class="col-md-4">
           <div>
-            <h5 class="blog-image ir" style="background-image:url('/images/blog/20141009-contest-blog-2.jpg');"></h5>
+            <a class="blog-image ir" href="https://mayday.us/campaigns/maydayin30/" style="background-image:url('/images/blog/20141009-contest-blog-2.jpg');"></a>
             <div class="article-details">
               <h5>2014-10-06</h5>
               <h4>#Maydayin30 Video Contest</h4>
               <p>Our supporters are helping us reduce the corrupting influence of money in politics. Check out these 30-second video ads that could run on national TV!</p>
-              <p><a class="btn btn-cta" href="https://mayday.us/campaigns/maydayin30/" role="button">Get Started</a></p>
+              <p><a class="btn btn-cta" href="https://mayday.us/campaigns/maydayin30/" role="button">See Who Won</a></p>
             </div>
           </div>
         </article>
         <article class="col-md-4">
           <div>
-            <a class="blog-image" href="http://blog.mayday.us/post/98805891740/i-just-joined-the-mayday-board"><img src="/images/blog/2014-09-30-zephyr-teachout2.jpg" /></a>
+            <a class="blog-image ir" href="http://blog.mayday.us/post/98805891740/i-just-joined-the-mayday-board" style="background-image:url('/images/blog/2014-09-30-zephyr-teachout2.jpg');"></a>
             <div class="article-details">
               <h5>2014-09-30</h5>
               <h4>Zephyr Teachout joins our board</h4>
@@ -96,55 +95,32 @@
 
   {% include footer.html %}
 
-  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
-  <script>window.jQuery || document.write('<script src="/js/vendor/jquery-1.11.0.min.js"><\/script>')</script>
-
-  <script src="/js/vendor/bootstrap.min.js"></script>
-
-  <script src="/js/plugins.js"></script>
-  <script src="https://cdn.optimizely.com/js/210578001.js"></script>
-
   <script>
 
-  function addCommas(nStr) {
-    nStr += '';
-    x = nStr.split('.');
-    x1 = x[0];
-    x2 = x.length > 1 ? '.' + x[1] : '';
-    var rgx = /(\d+)(\d{3})/;
-    while (rgx.test(x1)) {
-      x1 = x1.replace(rgx, '$1' + ',' + '$2');
-    }
-    return x1 + x2;
-  }
+  $(document).ready(function(){
+    $(".jumbotron-content form").validate({
+      rules: {
+        email: {
+              required: true,
+              email: true
+            }
+        }, errorPlacement: function(error, element) {
+            error.appendTo(element.parents('form'));
+        },
+      });
+    updateTotals();
 
-
-  function updateTotals() {
-    jQuery.getJSON('https://pledge.mayday.us/r/total', function(data) {
-      totalRaised = data.totalCents/100 + (1408240.42+1775000);//+offline contributions
-      totalRaised = Math.round(totalRaised);
-      $('#totalAmount').text('$' + addCommas(totalRaised));
+    $('#carousel-jumbotron').carousel({
+      interval: 20000
     });
-
-    jQuery.getJSON('https://pledge.mayday.us/r/num_pledges',
-      function(data) {
-      $('#numPledges').text(addCommas(data.count+4917+6));//+offline contributions
+    $('input').on('focus', function(){
+        $("#carousel-jumbotron").carousel('pause');
+      }).on('blur',function() {
+        $("#carousel-jumbotron").carousel('cycle');
     });
-  }
-
-    $(document).ready(function(){
-      $(".jumbotron-content form").validate({
-        rules: {
-          email: {
-                required: true,
-                email: true
-              }
-          }, errorPlacement: function(error, element) {
-              error.appendTo(element.parents('form'));
-          },
-        });
-      updateTotals();
-    });
+    $('#carousel-jumbotron .item').carouselHeights();
+    $("#carousel-jumbotron").carousel('pause');
+  });
   </script>
 
   {{ footer_content }}

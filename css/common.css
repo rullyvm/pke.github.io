@@ -88,6 +88,8 @@ footer {color: #999;background-color:black;}
   .safeharbor{font: normal 1em/1.4 'Merriweather', Georgia, "Times New Roman", Times, serif;display: inline-block;color: #aaa;text-align: center;font-size: 16px;padding: 10px 10px 0 10px;border: 2px solid #aaa;font-variant: small-caps;margin-bottom:10px;}
 /* END FOOTER SECTION */
 
+.subpage-content form .btn.btn-primary{background-color:#15405e;font-size:20px;font-family: 'Roboto',sans}
+
 .ir/* Image replacement: header social share, footer FB/Twitter */ {background-color: transparent;border: 0;overflow: hidden;text-indent: -9999px}
 .text-red {color: #cc3333 !important;}
 .float-right{float:right !important;}
@@ -166,7 +168,7 @@ footer {color: #999;background-color:black;}
 
 /*Subpages*/
 
-#embed .subpage-content {text-align:center;font-size:125%;}
+#embed .subpage-content {font-size:125%;}
 #embed .subpage-content pre {text-align:left;}
 #embed .subpage-content img {border: 1px solid black;padding: 1px;}
 #about .subpage-content img {float:left;width:150px;border:solid #ccc 2px;padding: 2px;margin: 5px 15px 15px 0;}
@@ -193,6 +195,7 @@ footer {color: #999;background-color:black;}
 .pledge:hover {background: #b73230;text-decoration: none;color: #fff;}
 
 .sidebar .block {padding-top: 30px;}
+.subpage-content .embed-responsive, .candidate-body .embed-responsive {margin-bottom:20px;}
 
 .sidebar h1,
 .sidebar h2,
@@ -245,8 +248,11 @@ label.error{color:#d53a38;}
 input.error{border: 1px solid #d53a38;background: rgba(213,58,56,0.1);}
 
 .social-icons{margin: 25px 0 0 0;text-align:center;}
-
-.social-icons a.twitter {width: 270px;height: 60px;line-height: 58px;font-size: 20px;display: inline-block;color: #fff;margin: 0 0 20px 0;border-radius: 5px;text-align: center;background: rgb(145,208,247); /* Old browsers */
+.social-icons a{width: 270px;height: 60px;line-height: 58px;font-size: 20px;display: inline-block;color: #fff;margin: 0 0 20px 0;border-radius: 5px;text-align: center;}
+.social-icons a:hover{-moz-box-shadow: inset 0 0 10px #FFFF99;-webkit-box-shadow: inset 0 0 10px #FFFF99;box-shadow: inset 0 0 10px #FFFF99;}
+.social-icons a.facebook {background: #3664a2;}
+.social-icons a.email {background: #ddd;color:#15405e;font:700 24px/58px Questrial, sans;text-transform:uppercase;}
+.social-icons a.twitter {background: rgb(145,208,247); /* Old browsers */
   background: -moz-linear-gradient(top, rgba(145,208,247,1) 0%, rgba(64,151,204,1) 68%); /* FF3.6+ */
   background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(145,208,247,1)), color-stop(68%,rgba(64,151,204,1))); /* Chrome,Safari4+ */
   background: -webkit-linear-gradient(top, rgba(145,208,247,1) 0%,rgba(64,151,204,1) 68%); /* Chrome10+,Safari5.1+ */
@@ -255,9 +261,6 @@ input.error{border: 1px solid #d53a38;background: rgba(213,58,56,0.1);}
   background: linear-gradient(to bottom, rgba(145,208,247,1) 0%,rgba(64,151,204,1) 68%); /* W3C */
   filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#91d0f7', endColorstr='#4097cc',GradientType=0 ); /* IE6-9 */}
 
-.social-icons a.twitter:hover{-moz-box-shadow: inset 0 0 10px #FFFF99;-webkit-box-shadow: inset 0 0 10px #FFFF99;box-shadow: inset 0 0 10px #FFFF99;}
-.social-icons a.facebook {width: 270px;height: 60px;line-height: 58px;font-size: 20px;display: inline-block;background: #3664a2;color: #fff;margin: 0 0 20px 0;border-radius: 5px;text-align: center;}
-.social-icons a.facebook:hover{-moz-box-shadow: inset 0 0 10px #FFFF99;-webkit-box-shadow: inset 0 0 10px #FFFF99;box-shadow: inset 0 0 10px #FFFF99;}
 
 
 #pledgecol-sidebar .panel {margin: 40px 10px;border: 1px solid #5990a9;border-radius: 0;}

@@ -1,0 +1,104 @@
+---
+layout: default
+title: Contact Us - We're eager to hear from you - MAYDAY.US
+omit_title_suffix: true
+cssid: contact-us
+hideSidebar: false
+---
+
+
+{% capture subhead %}
+
+A citizen-funded super PAC, to end all super PACs.
+
+{% endcapture %}
+
+{% capture pageid %}
+
+Contact-us
+{% endcapture %}
+
+{% capture content %}
+<h2>Contact Us</h2>
+
+<p>If you would like to get in touch, please email us at <a href="mailto:info@mayday.us">info@mayday.us</a> or use the form below.</p>
+
+<form id="contact-us-form" name="contact" method="get" action="/contact-us/">
+  <div class="form-group">
+    <label for="name">Name</label>
+    <input type="text" name="name" id="name" value="" class="form-control" />
+  </div>
+
+  <div class="form-group">
+    <label for="email">Email</label>
+    <input type="email" name="email" id="email" value="" class="form-control" />
+  </div>
+
+  <div class="form-group">
+    <label for="subject">Subject</label>
+    <input type="text" name="subject" id="subject" value="" class="form-control" />
+  </div>
+
+  <div class="form-group">
+    <label for="message">Message</label>
+    <textarea name="message" id="message" class="form-control" style="height:100px"></textarea>
+  </div>
+
+  <div class="form-actions">
+    <button class="btn btn-primary pull-right" type="submit">Contact Us</button>
+  </div>
+</form>
+<div id="js-thanks" style="display:none;">
+  <h2>Thanks for your message.</h2>
+  You should receive an email from us soon!
+</div>
+<script>
+
+
+$(document).ready(function(){
+  $('#contact-us-form').validate({
+    rules: {
+      email: {required: true, email: true },
+      subject: {required: true },
+      message: {required: true }
+    },
+    submitHandler: function(form) {
+      console.log("form:",form);
+      $(form).css('opacity','0.5')
+      $(form).find('input, textarea, button').prop('disabled',true);
+
+      var message = $('#message').val();
+      var subject = $('#subject').val();
+      var name = $('#name').val();
+      var email = $('#email').val();
+      var uvSubdomain = "mayone";
+      var uvKey = "eDfEG5sTLhJyY9qcZJTA";
+      console.log('message:', message);
+
+      $.ajax({
+          url: 'https://' + uvSubdomain + '.uservoice.com/api/v1/tickets/create_via_jsonp.json?callback=?',
+          dataType: "jsonp",
+          data: {
+            client: uvKey,
+            ticket: {
+              message: message,
+              subject: subject
+            },
+            name: name,
+            email: email
+        }
+      }).done(function() {
+        $(form).slideUp('0.2');
+        $('#js-thanks').slideDown('0.2');
+      }).fail(function() {
+        $(form).find('input, textarea, button').prop('disabled',false);
+        $(form).css('opacity','1');
+      });
+    }
+  });
+});
+</script>
+{% endcapture %}
+
+{% include subpage.html %}
+

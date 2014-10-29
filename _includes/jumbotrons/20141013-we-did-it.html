@@ -1,10 +1,11 @@
 <style type="text/css" media="screen">
-  .jumbotron-wrap{background:#eaebe5 url('/images/hero/20141010-greg-orman-2.jpg') no-repeat 10% center;padding-top: 70px;}
-  .jumbotron{position:relative;}
-    /*.jumbotron > a.ir{background:transparent url('/images/hero/youtube.png') no-repeat center center;}*/
-    .jumbotron .jumbotron-content{background: rgba(255,255,255,0.8);padding-top: 20px;}
-    .jumbotron a.ir.link-cover{display:block; width:100%; min-height:290px; position:absolute;top:0;bottom:0;z-index:100;width:54%;}
-    /*.jumbotron a.ir.link-cover:hover{background:transparent url('/images/hero/youtube-hover.png') no-repeat 80% 270px;}*/
+  .we-did-it{background:#eaebe5 url('/images/hero/20141010-greg-orman-2.jpg') no-repeat 10% center;}
+  .we-did-it jumbotron-wrap{padding-top: 70px;}
+  .we-did-it .jumbotron{position:relative;}
+    /*.we-did-it .jumbotron > a.ir{background:transparent url('/images/hero/youtube.png') no-repeat center center;}*/
+    .we-did-it .jumbotron .jumbotron-content{background: rgba(255,255,255,0.8);padding-top: 20px;}
+    .we-did-it .jumbotron a.ir.link-cover{display:block; width:100%; min-height:290px; position:absolute;top:0;bottom:0;z-index:100;width:54%;}
+    /*.we-did-it .jumbotron a.ir.link-cover:hover{background:transparent url('/images/hero/youtube-hover.png') no-repeat 80% 270px;}*/
 
 .progress-bar {
   background-color: rgba(200,200,200,0.3);
@@ -46,7 +47,7 @@
   padding-top: 6px;
 }
 
-.jumbotron .form-control {
+.we-did-it .jumbotron .form-control {
   box-shadow: 2px 2px 2px #aaa;
   border: 1px solid #aaa;
 }
@@ -58,12 +59,12 @@
   /*.jumbotron-wrap{background-position:25% 50px}*/
 }
 @media screen and (max-width: 1174px) {
-  .jumbotron-wrap{background-position:20% center}
+  .we-did-it .jumbotron-wrap{background-position:20% center}
 }
 @media screen and (max-width: 992px) {
-  .jumbotron .container{background: rgba(255,255,255,0.9); }
-  .jumbotron .jumbotron-content{width:100%; background:transparent;}
-  .jumbotron > a.ir.link-cover{display: none;}
+  .we-did-it .jumbotron .container{background: rgba(255,255,255,0.9);padding-bottom:20px }
+  .we-did-it .jumbotron .jumbotron-content{width:100%; background:transparent;}
+  .we-did-it .jumbotron > a.ir.link-cover{display: none;}
 }
 
 </style>
@@ -90,4 +91,3 @@
     </div>
   </section>
 </div>
-{% include jumbotrons/jumbotron-bottom.html %}

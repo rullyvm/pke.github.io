@@ -4,6 +4,7 @@ title: Tumblr Theme
 omit_title_suffix: true
 cssid: extern-tumblr-theme
 hideSidebar: true
+offSite: true
 ---
 {% capture meta_content %}
 <link rel="alternate" type="application/rss+xml" href="{RSS}" />
@@ -129,60 +130,6 @@ hideSidebar: true
     .donate-wrap-wp a {color: #fff; font-weight: 700; text-transform: uppercase; }
   {CustomCSS}
 </style>
-{% endcapture %}
-
-{% capture alternativemenu %}
-  <div class="row navbar-primary" role="navigation">
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-        <span class="sr-only">Toggle navigation</span>
-        <div class="menu-text">MENU</div>
-      </button>
-    </div>
-    <div class="collapse navbar-collapse" id="">
-      <ul class="nav navbar-nav">
-      <li><a href="https://mayday.us/">Home</a></li>
-        <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown">Our Plan <i class="fa fa-caret-down"></i></a>
-          <ul class="dropdown-menu" role="menu">
-            <li><a href="https://mayday.us/the-plan">Our Plan</a></li>
-            <li><a href="https://mayday.us/factsheet">Candidates</a></li>
-          </ul>
-        </li>
-        <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown">Get Involved <i class="fa fa-caret-down"></i></a>
-          <ul class="dropdown-menu" role="menu">
-            <li><a href="https://my.mayday.us/login">My Super Pac</a></li>
-            <li><a href="https://mayday.us/embed">Embeddable Media</a></li>
-            <li><a href="https://mayday.us/subscribe">Stay Connected</a></li>
-            <li><a href="https://mayday.us/ways">Spread the Word</a></li>
-            <li><a href="http://zazzle.com/maydayus" target="_blank">Buy Swag</a></li>
-            <li><a href="http://labs.mayday.us" target="_blank">Mayday Labs OSS Project</a></li>
-          </ul>
-        </li>
-        <li class="dropdown no-border">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown">About <i class="fa fa-caret-down"></i></a>
-          <ul class="dropdown-menu" role="menu">
-            <li><a href="https://mayday.us/about">Team Bios</a></li>
-            <li><a href="https://mayday.us/your-donations">Donor Data</a></li>
-            <!--<li><a href="/about">Bios</a></li>-->
-            <li><a href="https://mayday.us/videos">Videos &amp; Media</a></li>
-            <li><a href="https://mayday.us/faq">FAQ</a></li>
-            <!-- <li><a href="https://mayday.us/jobs">Jobs</a></li> -->
-          </ul>
-        </li>
-        <!-- <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown">News <i class="fa fa-caret-down"></i></a>
-          <ul class="dropdown-menu" role="menu">
-            <li><a href="/blog">Mayday PAC News</a></li>
-            <li><a href="/media">In the News</a></li>
-            <li><a href="#">Press Kit</a></li>
-          </ul>
-        </li> -->
-        <li class="pull-right no-border btn-wrap"><a href="https://mayday.us/newpledge" class="btn ribbon">Donate</a></li>
-      </ul>
-    </div>
-  </div>
 {% endcapture %}
 
 {% capture content %}
