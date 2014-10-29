@@ -304,6 +304,6 @@ h3{color: #313945;}
 a.offsetAnchor {
     display:block; 
     position: relative; 
-    top:30; 
+    top:-100px; 
     visibility:hidden;
 }
