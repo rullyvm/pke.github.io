@@ -1,0 +1,105 @@
+---
+layout: default
+title: Contact Us - We're eager to hear from you - MAYDAY.US
+omit_title_suffix: true
+cssid: contact-us
+hideSidebar: true
+---
+
+
+{% capture subhead %}
+
+A citizen-funded super PAC, to end all super PACs.
+
+{% endcapture %}
+
+{% capture pageid %}
+
+Contact-us
+{% endcapture %}
+
+{% capture content %}
+AIzaSyAcfA2Xf9-f3EfsmfU4gF6upJP8crRVQ4w
+$.get('https://www.googleapis.com/civicinfo/v2/voterinfo?electionId=4100&key=AIzaSyAcfA2Xf9-f3EfsmfU4gF6upJP8crRVQ4w&address=1263 Pacific Ave. Kansas City KS'
+
+<div class="row">
+  <div class="col-md-8">
+
+  </div>
+  <div class="col-md-4">
+    <h2>Contact Us</h2>
+    <p>If you would like to get in touch, please email us at <a href="mailto:info@mayday.us">info@mayday.us</a> or use the form below.</p>
+    <form id="lookup-form" name="contact" method="get" action="/contact-us/">
+      <div class="form-group">
+        <label for="name">Address</label>
+        <input type="text" name="name" id="name" value="" class="form-control" />
+      </div>
+
+      <div class="form-group">
+        <label for="email">City</label>
+        <input type="text" name="email" id="email" value="" class="form-control" />
+      </div>
+
+      <div class="form-group">
+        <label for="subject">State</label>
+        <input type="text" name="subject" id="subject" value="" class="form-control" />
+      </div>
+
+      <div class="form-group">
+        <label for="message">Zip</label>
+        <textarea name="message" id="message" class="form-control" style="height:100px"></textarea>
+      </div>
+
+      <div class="form-actions">
+        <button class="btn btn-primary pull-right" type="submit">Lookup</button>
+      </div>
+    </form>
+    <div id="js-thanks" style="display:none;">
+      <h2>Thanks for your message.</h2>
+      You should receive an email from us soon!
+    </div>
+
+  </div>
+</div>
+
+
+<script>
+
+function fetchFormInfo() {
+  var output = [];
+  var address_values = $('form input, form textarea').each(function() { output.push(this.value) } )
+  return output.join(' ');
+}
+
+$(document).ready(function(){
+  $('#lookup-form').validate({
+    rules: {
+      address: {required: true },
+      subject: {required: true },
+      message: {required: true }
+    },
+    submitHandler: function(form) {
+      $(form).css('opacity','0.5')
+      $(form).find('input, textarea, button').prop('disabled',true);
+
+      var address = fetchFormInfo();
+      $.get('https://www.googleapis.com/civicinfo/v2/voterinfo?electionId=4100&key=AIzaSyAcfA2Xf9-f3EfsmfU4gF6upJP8crRVQ4w&address=' + address)
+      .done(function(data) {
+        console.log(data)
+        //fetch district info
+        //fetch candidates in reform.to from that district.
+        //display those values or persue alternative course. 
+        $(form).slideUp('0.2');
+        $('#js-thanks').slideDown('0.2');
+      }).fail(function() {
+        $(form).find('input, textarea, button').prop('disabled',false);
+        $(form).css('opacity','1');
+      });
+    }
+  });
+});
+</script>
+{% endcapture %}
+
+{% include subpage.html %}
+
