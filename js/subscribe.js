@@ -1,8 +1,9 @@
 function SubscribeEmail(email) {
     var data = { 
-        'email':email
+        'email':email,
+	'dont_redirect':'true'
     }   
-    $.ajax('/r/subscribe', {data:data, type:'POST'}).done(function() {
+    $.ajax('//pledge.mayday.us/r/subscribe', {data:data, type:'POST'}).done(function() {
         $('#result').html("<p> it worked! you're subscribed!");
     }).fail(function() {
         $('#result').html("<p> Oh no, there was a problem subscribing your email!");
