@@ -4,7 +4,6 @@ function SubscribeEmail(email) {
 	'dont_redirect':'true'
     }   
     $.ajax('//pledge.mayday.us/r/subscribe', {data:data, type:'POST'}).done(function() {
-        $('#result').html("<p> it worked! you're subscribed!");
     }).fail(function() {
 	window.location.replace('https://mayday.us/subscribe/');
     }) 
