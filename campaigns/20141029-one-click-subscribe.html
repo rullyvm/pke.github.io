@@ -1,0 +1,32 @@
+---
+layout: default
+title: One click email subscribe
+omit_title_suffix: true
+cssid: camp-survey-user
+hideSidebar: true
+og_title: Getting to know the MAYDAY.US Community
+---
+
+
+{% capture subhead %}
+
+A citizen-funded super PAC, to end all super PACs.
+
+{% endcapture %}
+
+{% capture pageid %}
+
+Getting to know the Mayday Community
+
+{% endcapture %}
+
+{% capture content %}
+<script type='text/javascript' src='/js/subscribe.js'></script>
+<script type='text/javascript'>
+    $.ready(SendEmail);
+</script>
+<h2>Getting to know the Mayday Community</h2>
+<div id="result"> </div>
+{% endcapture %}
+
+{% include subpage.html %}
