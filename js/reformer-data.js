@@ -217,10 +217,10 @@ var reformers = {
         "endorsed": false
     }, {
         "bioguide_id": "N000127",
-        "fec_id": "",
-        "con",
-        "state"""
-        "district": "  ": "Richard",
+        "fec_id": "H2MN08111",
+        "role": "legislatorLowerBody",
+        "district": "08",
+        "first_name": "Richard",
         "middle_name": "M.",
         "last_name": "Nolan",
         "suffix": "",
