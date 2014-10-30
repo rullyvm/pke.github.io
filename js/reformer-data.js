@@ -1,4 +1,4 @@
-var reformers = {
+var reformData = {
     "reformers": [{
         "bioguide_id": "",
         "fec_id": "H4MN06137",

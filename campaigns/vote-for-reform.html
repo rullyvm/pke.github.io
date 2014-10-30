@@ -64,51 +64,61 @@ $.get('https://www.googleapis.com/civicinfo/v2/voterinfo?electionId=4100&key=AIz
 
 <script src="/js/reformer-data.js" type="text/javascript" charset="utf-8"></script>
 <script>
-function fetchFormInfo() {
+function parseFormData() {
   var output = [];
   var address_values = $('form input, form textarea').each(function() { output.push(this.value) } )
   return output.join(' ');
 }
 
 function filterValidContests(contests){
-  output = [];
-  $(contests).each(function(){
-    if(this.level[0] == "country" && /legislatorUpperBody|legislatorLowerBody/.test(this.roles[0]) ){
-      output.push(this)
-    }
-  }
+  output = contests.filter(function(data){
+    return data.hasOwnProperty('roles') &&
+    data.hasOwnProperty('level') &&
+    data.level[0] == "country" &&
+    /legislatorUpperBody|legislatorLowerBody/.test(data.roles[0])
+  });
+  return output
+}
+
+function filterRelevantReformers(userStateAbbr) {
+  console.log('reformers in filterRelevantReformers:', reformData.reformers)
+  output = reformData.reformers.filter(function(data){ return data.state == userStateAbbr });
   return output;
 }
 
-function filterRelevantReformers(user_state_abbr) {
-  output = [];
-  $(reformers).each(function(){
-    if(this.state == user_state_abbr){
-      output.push(this)
-    }
-  }
-  return output;
+function aggregateReformersWithCivicInfo (relevantReformers,contests) {
+  $(relevantReformers).each(function() {
+    var reformer = this;
+    targetContest = contests.filter(function(data){ return data.roles[0] == reformer.role })[0]
+    console.log('targetContest:', targetContest)
+    // TODO ERROR CONDITION IF CANDIDATE DOESN'T HAVE CONTEST - WIELAND NOT IN GOOGLE DATA
+    reformerRegex = new RegExp(reformer.last_name,'i');
+    targetCandidateInfo = targetContest.candidates.filter(function(data){ return reformerRegex.test(data.name) })[0]
+    $.extend(reformer, targetCandidateInfo);
+  })
 }
 
 $(document).ready(function(){
   $.get('http://api.reform.to/reformers/index.json')
   $('#lookup-form').validate({
     rules: {
-      address: {required: true },
-      subject: {required: true },
-      message: {required: true }
+      // address: {required: true },
+      // subject: {required: true },
+      // message: {required: true }
     },
     submitHandler: function(form) {
       $(form).css('opacity','0.5')
       $(form).find('input, textarea, button').prop('disabled',true);
 
-      var address = fetchFormInfo();
+      var address = parseFormData();
       $.get('https://www.googleapis.com/civicinfo/v2/voterinfo?electionId=4100&key=AIzaSyAcfA2Xf9-f3EfsmfU4gF6upJP8crRVQ4w&address=' + address)
       .done(function(data) {
-        console.log(data)
-        user_state_abbr = res.normalizedInput.state;
+        userStateAbbr = data.normalizedInput.state;
         var validContests = filterValidContests(data.contests);
-        var relevantReformers = filterRelevantReformers(user_state_abbr);
+        var relevantReformers = filterRelevantReformers(userStateAbbr);
+        aggregateReformersWithCivicInfo(relevantReformers,validContests);
+        console.log('relevantReformers:', relevantReformers);
+
 
 
         //fetch district info
