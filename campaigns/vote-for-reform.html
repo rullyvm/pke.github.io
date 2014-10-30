@@ -62,16 +62,36 @@ $.get('https://www.googleapis.com/civicinfo/v2/voterinfo?electionId=4100&key=AIz
   </div>
 </div>
 
-
+<script src="/js/reformer-data.js" type="text/javascript" charset="utf-8"></script>
 <script>
-
 function fetchFormInfo() {
   var output = [];
   var address_values = $('form input, form textarea').each(function() { output.push(this.value) } )
   return output.join(' ');
 }
 
+function filterValidContests(contests){
+  output = [];
+  $(contests).each(function(){
+    if(this.level[0] == "country" && /legislatorUpperBody|legislatorLowerBody/.test(this.roles[0]) ){
+      output.push(this)
+    }
+  }
+  return output;
+}
+
+function filterRelevantReformers(user_state_abbr) {
+  output = [];
+  $(reformers).each(function(){
+    if(this.state == user_state_abbr){
+      output.push(this)
+    }
+  }
+  return output;
+}
+
 $(document).ready(function(){
+  $.get('http://api.reform.to/reformers/index.json')
   $('#lookup-form').validate({
     rules: {
       address: {required: true },
@@ -86,9 +106,14 @@ $(document).ready(function(){
       $.get('https://www.googleapis.com/civicinfo/v2/voterinfo?electionId=4100&key=AIzaSyAcfA2Xf9-f3EfsmfU4gF6upJP8crRVQ4w&address=' + address)
       .done(function(data) {
         console.log(data)
+        user_state_abbr = res.normalizedInput.state;
+        var validContests = filterValidContests(data.contests);
+        var relevantReformers = filterRelevantReformers(user_state_abbr);
+
+
         //fetch district info
         //fetch candidates in reform.to from that district.
-        //display those values or persue alternative course. 
+        //display those values or persue alternative course.
         $(form).slideUp('0.2');
         $('#js-thanks').slideDown('0.2');
       }).fail(function() {
