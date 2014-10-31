@@ -1,0 +1,103 @@
+path {
+  stroke-linejoin: round;
+  stroke-linecap: round;
+}
+
+.districts, .states {
+  fill: #bbb;
+}
+
+.districts :hover, .states :hover {
+  fill: #ccc;
+}
+
+.q3-9 { fill:rgb(158,202,225); }
+.q3-9:hover { fill:rgb(107,174,214); }
+
+
+.q8-9 { fill:rgb(8,48,107); }
+.q8-9:hover { fill: #011d2b; }
+
+
+.district-boundaries {
+  pointer-events: none;
+  fill: none;
+  stroke: #fff;
+  stroke-width: .5px;
+}
+
+.state-boundaries {
+  pointer-events: none;
+  fill: none;
+  stroke: #fff;
+  stroke-width: 1.5px;
+}
+
+.capitalize {
+    text-transform: capitalize;
+}
+
+#candidates {
+  border  : 1px solid #efefef;
+  padding: 10px;
+}
+
+#candidates h3 {
+  padding-bottom: 0px;
+  margin-bottom: 0px;
+}
+
+#candidates h4 {
+  margin-top: 0px;
+  padding-top: 0px;
+}
+
+.view span {
+  font-family         : Helvetica;
+  padding           : 5px 10px;
+}
+
+.cursor {
+  cursor            : pointer;
+}
+
+.view #house {
+  border            : 1px solid #efefef;
+  border-top-left-radius    : 5px;
+  border-bottom-left-radius : 5px;
+  border-right        : none;
+}
+
+.view #senate {
+  border            : 1px solid #efefef;
+  border-top-right-radius   : 5px;
+  border-bottom-right-radius  : 5px
+}
+
+.view span.active {
+  background-color      : #011d2b;
+  color           : #fff;
+}
+
+.view span#house.active {
+  background-color      : #e1000f;
+}
+
+.box {
+  width           : 30px;
+  height            : 30px;
+  border            : 1px solid black;
+  margin            : 5px 0px;
+}
+
+.box.mayday {
+  background-color      : rgb(8,48,107);
+}
+
+.box.reform {
+  background-color      : rgb(107,174,214);
+}
+
+.box.no-supporters {
+  background-color      : #bbb;
+}
