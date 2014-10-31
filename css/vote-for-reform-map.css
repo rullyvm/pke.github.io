@@ -1,3 +1,11 @@
+/***** GENERAL STYLES ****/
+
+.capitalize { text-transform: capitalize; }
+.cursor { cursor: pointer; }
+.inline { float: left; display: inline; }
+
+/****** D3 MAP STYLES ****/
+
 path {
   stroke-linejoin: round;
   stroke-linecap: round;
@@ -11,13 +19,12 @@ path {
   fill: #ccc;
 }
 
-.q3-9 { fill:rgb(158,202,225); }
-.q3-9:hover { fill:rgb(107,174,214); }
+.reformer { fill:rgb(158,202,225); }
+.reformer:hover { fill:rgb(107,174,214); }
 
 
-.q8-9 { fill:rgb(8,48,107); }
-.q8-9:hover { fill: #011d2b; }
-
+.endorsed { fill:rgb(8,48,107); }
+.endorsed:hover { fill: #011d2b; }
 
 .district-boundaries {
   pointer-events: none;
@@ -33,61 +40,27 @@ path {
   stroke-width: 1.5px;
 }
 
-.capitalize {
-    text-transform: capitalize;
-}
+/* LEGEND STYLES */
 
-#candidates {
-  border  : 1px solid #efefef;
-  padding: 10px;
-}
-
-#candidates h3 {
-  padding-bottom: 0px;
-  margin-bottom: 0px;
-}
-
-#candidates h4 {
-  margin-top: 0px;
-  padding-top: 0px;
-}
-
-.view span {
-  font-family         : Helvetica;
+.legend{overflow: hidden;}
+.legend .bttn {
+  border            : 1px solid #efefef;
   padding           : 5px 10px;
+  margin            : 10px 0px;
 }
 
-.cursor {
-  cursor            : pointer;
+.map-key{
+  float:right;
 }
+.map-key p{margin-top:5px;}
 
-.view #house {
-  border            : 1px solid #efefef;
-  border-top-left-radius    : 5px;
-  border-bottom-left-radius : 5px;
-  border-right        : none;
-}
-
-.view #senate {
-  border            : 1px solid #efefef;
-  border-top-right-radius   : 5px;
-  border-bottom-right-radius  : 5px
-}
-
-.view span.active {
-  background-color      : #011d2b;
-  color           : #fff;
-}
-
-.view span#house.active {
-  background-color      : #e1000f;
-}
-
-.box {
-  width           : 30px;
-  height            : 30px;
-  border            : 1px solid black;
-  margin            : 5px 0px;
+.map-key p.box {
+  width: 17px;
+  height: 16px;
+  border: 1px solid black;
+  margin-left: 30px;
+  margin-right: 5px;
+  margin-top: 9px;
 }
 
 .box.mayday {
@@ -101,3 +74,27 @@ path {
 .box.no-supporters {
   background-color      : #bbb;
 }
+
+/******** CANDIDATE STYLES ********/
+
+#candidates {
+  padding: 10px;
+  min-height: 170px;
+  position: absolute;
+  bottom: 140px;
+  width: 200px;
+}
+
+#candidates h3 {
+  padding-bottom:0px;font-size:22px;line-height:normal;font-weight:100px
+}
+
+#candidates h4 {
+  margin-top    : 0px;
+  padding-top   : 0px;
+  font-weight   : normal;
+  font-style    : italic;
+}
+
+#candidates p{margin-bottom:0;font-size:16px;margin-bottom:30px;line-height: normal;}
+#candidates p.intro-text{font-size: 20px}
