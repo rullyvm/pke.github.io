@@ -1291,21 +1291,6 @@ var reformData = {
     "source": "cosponsor"
   },
   {
-    "bioguide_id": "L000174",
-    "district": "00",
-    "first_name": "patrick",
-    "last_name": "leahy",
-    "party": "D",
-    "state": "VT",
-    "state_name": "Vermont",
-    "reforms": [],
-    "endorsed": false,
-    "suffix": "",
-    "role": "legislatorUpperBody",
-    "fec_id": "",
-    "source": "cosponsor"
-  },
-  {
     "bioguide_id": "L000557",
     "district": "01",
     "first_name": "john",
@@ -2169,21 +2154,6 @@ var reformData = {
     "party": "D",
     "state": "IL",
     "state_name": "Illinois",
-    "reforms": [],
-    "endorsed": false,
-    "suffix": "",
-    "role": "legislatorUpperBody",
-    "fec_id": "",
-    "source": "cosponsor"
-  },
-  {
-    "bioguide_id": "S000033",
-    "district": "00",
-    "first_name": "bernard",
-    "last_name": "sanders",
-    "party": "I",
-    "state": "VT",
-    "state_name": "Vermont",
     "reforms": [],
     "endorsed": false,
     "suffix": "",
