@@ -117,11 +117,11 @@ footer {color: #999;background-color:black;}
   .navbar-brand {background-size: contain;width: 258px;}}
 
 /* For iPad and smaller screens */
-@media (max-width: 768px) {
+@media (max-width: 769px) {
+  .navbar-primary .navbar-nav>li>a {padding: 13px 0 13px 10px;}
   .navbar-collapse.in {overflow-y: auto;min-width:290px;margin-left: -130px;}
   .navbar-primary .in .navbar-nav>li {background-color: rgba(255,255,255,0.9);}
   .navbar-primary .navbar-nav>li:after{display:none;}
-  .navbar-primary .navbar-nav>li.btn-wrap{width:100%;}
 }
 
 /* For iPhone and smaller screens */

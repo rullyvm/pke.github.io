@@ -1,0 +1,351 @@
+---
+layout: default
+title: #vote4reform - MAYDAY.US
+omit_title_suffix: true
+cssid: vote-for-reform
+hideSidebar: true
+---
+{% capture meta_content %}
+  <title>Find your reform candidate! #vote4reform</title>
+  <meta content="Find your reform candidate! #vote4reform" itemprop="name" />
+  <meta property="fb:app_id" value="515720611858523" />
+  <meta content="https://mayday.us/campaigns/vote-for-reform/" property="og:url" />
+  <meta content="https://mayday.us/campaigns/vote-for-reform/" name="twitter:url" />
+  <meta content="https://mayday.us/images/campaigns/20141101-maydaymap.jpg" property="og:image" />
+  <meta content="https://mayday.us/images/campaigns/20141101-maydaymap.jpg" name="twitter:image" />
+  <meta content="Find your reform candidate! #vote4reform" property="og:title" />
+  <meta content="Find your reform candidate! #vote4reform" name="twitter:title" />
+  <meta content="I just found a reform candidate in my district with the @MAYDAYUS Map - use it to #vote4reform in your state" property="og:description" />
+  <meta content="I just found a reform candidate in my district with the @MAYDAYUS Map - use it to #vote4reform in your state http://goo.gl/sU1I1" name="twitter:description" />
+  <meta content="@mayday" name="twitter:site" />
+  <meta content="summary_large_image" name="twitter:card" />
+  <meta content="https://mayday.us/images/campaigns/20141101-maydaymap.jpg" name="twitter:image:src" />
+{% endcapture %}
+
+{% capture subhead %} A citizen-funded super PAC, to end all super PACs. {% endcapture %}
+{% capture pageid %} vote-for-reform {% endcapture %}
+
+{% capture content %}
+
+<div class="row">
+  <div class="col-md-8">
+    <ul class="nav nav-pills nav-stacked map-control" style="">
+      <li class="active"><a class="senate" data-chamber="senate">Senate</a></li>
+      <li><a class="house" data-chamber="house">House</a></li>
+    </ul>
+    <div id="container_div" class="col-md-11 col-md-offset-1">
+      <svg></svg>
+      <div class="legend">
+        <div class="map-key">
+          <span class="inline"><span class="mayday box inline"></span>MAYDAY Candidate</span>
+          <span class="inline"><span class="reform box inline"></span>Candidate Supports Reform</span>
+          <span class="inline"><span class="no-supporters box inline"></span>No Reform Candidate</span>
+        </div>
+      </div>
+    </div>
+    <div id="candidates" class="col-md-2">
+      <p class="intro-text">Click on a state to find reformers!</p>
+    </div>
+
+    <div id="underscore_templates" style="display: none;">
+      <div id="default_candidate_tmp">
+        <p class="intro-text">Click on a state to find reformers!</p>
+      </div>
+      <div id="no_candidate_tmp">
+        <p>There are no reform candidates for that state or district.</p>
+      </div>
+      <div id="candidate_tmp">
+        <div class="candidate-template">
+          <h3 class="capitalize">[[= full_name ]]</h3>
+          <h4>[[= race_type ]], [[= state ]]</h4>
+          [[ if (endorsed) { ]]
+            <p class="endorsement"><span class="capitalize">[[= last_name.toLowerCase() ]]</span> is endorsed by MAYDAY.US!</p>
+          [[ } ]]
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-4">
+    <div id="js-query">
+      <h2>Find your reform candidate!</h2>
+      <p>Locate pro-reform candidates in your district and state. Enter your location, and we will locate candidates who have pledged to stop the corrupting influence of big money on politics. Before you go to the polls on Nov. 4 be sure to use this map so that you can #vote4reform.</p>
+      <form id="lookup-form" name="contact" method="get" action="#">
+        <div class="form-group">
+          <label for="address">Address</label>
+          <input type="text" name="address" value="" class="form-control" />
+        </div>
+
+        <div class="form-group">
+          <label for="city">City</label>
+          <input type="text" name="city" value="" class="form-control" />
+        </div>
+
+        <div class="row">
+          <div class="col-md-8">
+            <div class="form-group">
+              <label for="state">State</label>
+              {% include state_input.html name='state' %}
+            </div>
+          </div>
+
+          <div class="col-md-4">
+            <div class="form-group">
+              <label for="zip">Zip</label>
+              <input name="zip" class="form-control"/>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-actions">
+          <button class="btn btn-primary pull-right" type="submit">Find My Reformers</button>
+        </div>
+      </form>
+    </div>
+    <div id="js-no-candidates" style="display:none;">
+      <h2>No reform candidates in your area.</h2>
+      <p>Too bad! Help us change that. You can start by using the link below to support anti-corruption candidates by sharing with your friends:</p>
+      <div class="social-icons">
+        <a class="twitter" href="https://twitter.com/home?status=I%20just%20found%20a%20reform%20candidate%20in%20my%20district%20with%20the%20%40MAYDAYUS%20Map%20-%20use%20it%20to%20%23vote4reform%20in%20your%20state%20http%3A%2F%2Fgoo.gl%2FsU1I1"
+            target="_blank"><img src="/images/share_twitter.png"></a><br />
+        <a class="facebook" href="http://www.facebook.com/sharer.php?u=https://mayday.us/campaigns/vote-for-reform/" target="_blank"><img src="/images/share_facebook.png"></a><br />
+        <a class="email" href="mailto:?subject=Vote%20for%20Campaign%20Finance%20Reform&body=Friend%2C%0A%0AI%20just%20found%20a%20reform%20candidate%20in%20my%20district%20with%20the%20%40MAYDAYUS%20Map%20-%20use%20it%20to%20vote%20for%20the%20reformer%20in%20your%20state%20on%20Nov.%204.%0A%0AClick%20here%20to%20find%20your%20reformer%3A%20http%3A%2F%2Fgoo.gl%2FsU1I1u%0A%0AVote%20for%20Campaign%20Reform%21%0A">Email</a>
+      </div>
+    </div>
+
+    <div id="js-vote" style="display:none;">
+      <h2>Here are your candidates. #$1,$2</h2>
+      <p>These candidates have pledged to back legislation which fundamentally changes the way politicians raise money:</p>
+      <div class="row" id="js-candidate-wrap">
+        <div id="candidate-template" class="hidden reformer col-md-6">
+          <img src="#" alt="#" class="pull-left">
+          <h4 class="capitalize"></h4>
+          <h5></h5>
+          <p></p>
+        </div>
+      </div>
+      <form id="email-form" class="email-form" method="post" action="https://pledge.mayday.us/r/subscribe">
+        <h3>Commit to vote for reform</h3>
+        <p>Enter your email and we'll send you a reminder on Election Day that you can share with your friends!</p>
+        <input type="hidden" name="redirect" value="http://dev.mayday.us/campaigns/vote-for-reform-share/" />
+        <input type="hidden" name="source" value="vote-reform-lookup">
+        <input type="hidden" name="address" value="">
+        <input type="hidden" name="city" value="">
+        <input type="hidden" name="state" value="">
+        <input type="hidden" name="zip" value="">
+        <input type="hidden" name="NationBuildermap_lookup_district" value="">
+        <div class="form-group">
+          <label for="email" class="sr-only">Email</label>
+          <input type="email" name="email" id="email" value="" class="form-control" placeholder="Email Address" />
+        </div>
+        <div class="checkbox">
+          <label>
+            <input type="checkbox" name="NationBuilderemail_opt_in" checked="checked"> Sign up to join the MAYDAY.US mailing list.
+          </label>
+        </div>
+        <div class="form-actions">
+          <button class="btn btn-primary pull-right" type="submit">I'm voting for reform</button>
+        </div>
+      </form>
+    </div>
+
+  </div>
+</div>
+
+<style type="text/css" media="screen">
+  .capitalize{text-transform:capitalize;}
+  #container_div{min-height:400px;}
+  .reformer {margin-bottom:10px;}
+    .reformer img{margin-right:8px;border-radius:4px;margin-bottom:8px;}
+    .reformer h4{padding-bottom:0;line-height:normal;font-weight:700}
+    .reformer p{font-size:14px;line-height:normal;}
+  .email-form {padding:14px;margin-top:20px;background: #eee; border-radius: 3px; overflow: hidden;}
+    .email-form h3{padding-bottom:10px;}
+    .email-form p{margin-bottom:6px;font-size:16px;}
+    .email-form .checkbox{display:inline-block;margin-top:0px}
+    .email-form .form-actions{display:inline;}
+
+</style>
+<link rel="stylesheet" href="/css/vote-for-reform-map.css">
+<script src="/data/vote-for-reform-map/reformer-data.js" type="text/javascript" charset="utf-8"></script>
+<script>
+function parseFormData() {
+  var output = [];
+  var address_values = $('#lookup-form .form-control').each(function() {
+    $('#email-form input[name=' + $(this).prop('name')+']').val(this.value)
+    output.push(this.value)
+  });
+  return output.join(' ');
+}
+
+function filterValidContests(contests){
+  output = contests.filter(function(data){
+    return data.hasOwnProperty('roles') &&
+    data.hasOwnProperty('level') &&
+    data.level[0] == "country" &&
+    /legislatorUpperBody|legislatorLowerBody/.test(data.roles[0]);
+  });
+  return output;
+}
+
+function filterRelevantReformers(district_info) {
+  output = reformData.reformers.filter(function(data){
+    data.district_display_name = district_info.display_name
+    if(data.role == 'legislatorLowerBody'){
+      return data.state == district_info.state && data.district == district_info.district
+    }else{
+      return data.state == district_info.state
+    }
+  });
+  return output;
+}
+
+// function aggregateAndProcessCandidateInfo (relevantReformers,contests) {
+//   $(relevantReformers).each(function() {
+//     var reformer = this;
+//     targetContest = contests.filter(function(data){ return data.roles[0] == reformer.role })[0];
+//     if(targetContest){
+//       reformerRegex = new RegExp(reformer.last_name,'i');
+//       targetCandidateInfo = targetContest.candidates.filter(function(data){ return reformerRegex.test(data.name) })[0];
+
+//       if(targetCandidateInfo){
+//         $.extend(reformer, targetCandidateInfo);
+//         parseTemplateValues(reformer);
+//       }
+//     }
+//   });
+//   removeInactiveReformers(relevantReformers)
+// }
+
+// function removeInactiveReformers(reformers){
+//   toRemove = []
+//   $(reformers).each(function(i, elem){
+//     if (!elem.hasOwnProperty('candidateUrl')){toRemove.push(i)}
+//   });
+//   $(toRemove.reverse()).each(function() {
+//     reformers.splice(this,1)
+//   })
+// }
+
+function parseTemplateValues(reformer){
+  reformer.state_name = reformer.district_display_name;
+  reformer.contest_name = (reformer.role == 'legislatorLowerBody' ? 'Congress' : 'Senate');
+  reformer.first_name = reformer.first_name.toLowerCase();
+  reformer.last_name = reformer.last_name.toLowerCase();
+  reformer.full_name = [reformer.first_name, reformer.last_name].join(' ');
+  // reformer.bio_url = reformer.endorsed ? reformer.mayday_url : reformer.candidateUrl;
+  reformer.bioguide_id = reformer.hasOwnProperty('bioguide_id') && reformer.bioguide_id.length > 4 ? reformer.bioguide_id : 'unavailable';
+
+  reformer.bio_text = '<span class="capitalize">' + reformer.full_name + '</span> is a candidate who supports ' + parseSupportedLegislation(reformer.reforms) + '. ';
+  reformer.bio_text += reformer.endorsed ? ('<strong><span class="capitalize">'+reformer.last_name + '</span> is formally endorsed by MADAY.us.</strong> ') : '';
+  if(reformer.hasOwnProperty('mayday_url') && reformer.mayday_url.length > 5){
+    reformer.bio_text += 'You can learn more about <a href="' + reformer.bio_url + '" target="_blank"><span class="capitalize">' + reformer.last_name + '</span> here</a>.';
+  }
+}
+
+function parseSupportedLegislation(supportedIds){
+  if(supportedIds.length > 0){
+    output = reformData.reforms.filter(function(data){
+      return $.inArray(data.id, supportedIds);
+    })
+    console.log(output, 'after map', $($.makeArray(output)).map(function(i,reformer){ return reformer.title}));
+    output = $($.makeArray(output)).map(function(i,reformer){ return reformer.title})
+    output = $.makeArray(output).join(', ').replace(/, ([\w]*)$/, "and $1");
+  }else{
+    output = 'campaign reform';
+  }
+  return output;
+}
+
+function addReformerCandidate(reformer) {
+  $template = $('#candidate-template').clone().removeClass('hidden') ;
+
+  $template.find('h4').text(reformer.full_name);
+  $template.find('h5').text(reformer.contest_name);
+  $template.find('p').html(reformer.bio_text);
+  $template.find('img').prop('src', '/images/congress/' + reformer.bioguide_id + '.jpg')
+  console.log($template);
+  $('#js-candidate-wrap').append($template);
+}
+
+function promptStepTwo(relevantReformers) {
+  $('#js-query').slideUp('0.2');
+  if(relevantReformers.length > 0){
+    $(relevantReformers).each(function(){
+      addReformerCandidate(this);
+    })
+    $('#js-vote').slideDown('0.2');
+  }else{
+    $('#js-no-candidates').slideDown('0.2');
+  }
+}
+
+$(document).ready(function(){
+  $.get('http://api.reform.to/reformers/index.json')
+  $('#lookup-form').validate({
+    rules: {
+      state: {required: true },
+      zip: {required: true },
+    },
+    submitHandler: function(form) {
+      $(form).find('> .error').remove();
+      $(form).css('opacity','0.5');
+      $(form).find('input, textarea, button').prop('disabled',true);
+
+      var address = parseFormData();
+      // address='568 East Corning Street Red Oak, IA 51566'
+
+      $.getJSON('http://dev.virtualearth.net/REST/v1/Locations?key=An0HkWu-Q-XgX0M2cVzUqkfPLjxswE-hBYvSddZGfYIvjc4YkDvLqOTOUW4_YQdY&q=' + address+'&jsonp=?')
+      .done(function(data) {
+        coordinates = data.resourceSets[0].resources[0].point.coordinates
+        lat = coordinates[0]
+        lng = coordinates[1]
+        console.log(lat, lng)
+        $.getJSON('http://congress.mcommons.com/districts/lookup.json?lat='+lat+'&lng='+lng+'&callback=?')
+        // $.getJSON('https://congress.api.sunlightfoundation.com/districts/locate?apikey=f15a9e31958f487aa6658b79f38b04ed&latitude='+lat+'&longitude='+lng+'&callback=?')
+        .done(function(data){
+          district_info = data.federal
+          // var validContests = filterValidContests(data.contests);
+          var relevantReformers = filterRelevantReformers(district_info);
+          // aggregateAndProcessCandidateInfo(relevantReformers,validContests);
+          $.each(relevantReformers, function(){
+            parseTemplateValues(this);
+          })
+          promptStepTwo(relevantReformers)
+
+        }).fail(function() {
+          $(form).find('input, textarea, button').prop('disabled',false);
+          $(form).css('opacity','1');
+          $(form).prepend('<div class="error">Whoops! We didn\'t understand your address. Please try again!</div>');
+        });
+      }).fail(function() {
+        $(form).find('input, textarea, button').prop('disabled',false);
+        $(form).css('opacity','1');
+        $(form).prepend('<div class="error">Whoops! We didn\'t understand your address. Please try again!</div>');
+      });
+    }
+  });
+$('#email-form').validate({
+    rules: {
+      email: {required: true, email: true },
+    }//,
+    // submitHandler: function(form) {
+    //   $.post('https://pledge.mayday.us/r/subscribe', form.serialize())
+    //   .done(function(){
+    //     contentSection = $('#js-no-candidates');
+    //     contentSection.find('h2').text('Thanks for committing to vote!')
+    //     contentSection.find('p').html('You can continue to help by <a href="http://calloutthevote.mayday.us/act/COTV_2014_mayday">>volunteering</a> and/or sharing with your friends:')
+    //   })
+    // }
+  });
+});
+</script>
+
+<script src="//cdnjs.cloudflare.com/ajax/libs/underscore.js/1.7.0/underscore-min.js" type="text/javascript" charset="utf-8"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/d3/3.4.13/d3.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/queue-async/1.0.7/queue.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="/js/vendor/topojson.v1.min.js"></script>
+<script src="/js/map.js"></script>
+{% endcapture %}
+
+{% include subpage_fullwidth.html %}
+
