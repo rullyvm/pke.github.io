@@ -1487,21 +1487,6 @@ var reformData = {
     "source": "cosponsor"
   },
   {
-    "bioguide_id": "H001032",
-    "district": "12",
-    "first_name": "rush",
-    "last_name": "holt",
-    "party": "D",
-    "state": "NJ",
-    "state_name": "New Jersey",
-    "reforms": [4,0],
-    "endorsed": false,
-    "suffix": "",
-    "role": "legislatorLowerBody",
-    "fec_id": "",
-    "source": "cosponsor"
-  },
-  {
     "bioguide_id": "H001047",
     "district": "04",
     "first_name": "james",
@@ -2244,21 +2229,6 @@ var reformData = {
     "party": "I",
     "state": "VT",
     "state_name": "Vermont",
-    "reforms": [],
-    "endorsed": false,
-    "suffix": "",
-    "role": "legislatorUpperBody",
-    "fec_id": "",
-    "source": "cosponsor"
-  },
-  {
-    "bioguide_id": "M001170",
-    "district": "00",
-    "first_name": "claire",
-    "last_name": "mccaskill",
-    "party": "D",
-    "state": "MO",
-    "state_name": "Missouri",
     "reforms": [],
     "endorsed": false,
     "suffix": "",
