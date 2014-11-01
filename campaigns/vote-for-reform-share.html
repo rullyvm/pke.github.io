@@ -32,6 +32,8 @@ og_title: Find your reform candidate! #vote4reform
     <div class="col-md-8">
       <img src="/images/campaigns/20141031-vote-for-reform-map.jpg" alt="" class="img-responsive">
     </div>
+
+    <p style="text-align:center"><strong>Short link:</strong> <span style="font-family:Courier, Courier New" id="js-shortcode">http://goo.gl/sU1I1u</span></p>
     <div class="col-md-4">
       <div class="social-icons">
         <a class="twitter" href="https://twitter.com/home?status=I%20just%20found%20a%20reform%20candidate%20in%20my%20district%20with%20the%20%40MAYDAYUS%20Map%20-%20use%20it%20to%20%23vote4reform%20in%20your%20state%20http%3A%2F%2Fgoo.gl%2FsU1I1"
@@ -43,6 +45,12 @@ og_title: Find your reform candidate! #vote4reform
     </div>
   </div>
 </div>
+
+<script>
+  $(document).ready(function() {
+    $('#js-shortcode').on('click', function(){ $(this).selectText(); })
+  })
+</script>
 
 {% endcapture %}
 

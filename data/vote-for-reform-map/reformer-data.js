@@ -2147,21 +2147,6 @@ var reformData = {
     "source": "cosponsor"
   },
   {
-    "bioguide_id": "G000555",
-    "district": "00",
-    "first_name": "kirsten",
-    "last_name": "gillibrand",
-    "party": "D",
-    "state": "NY",
-    "state_name": "New York",
-    "reforms": [],
-    "endorsed": false,
-    "suffix": "",
-    "role": "legislatorUpperBody",
-    "fec_id": "",
-    "source": "cosponsor"
-  },
-  {
     "bioguide_id": "S001181",
     "district": "00",
     "first_name": "jeanne",
