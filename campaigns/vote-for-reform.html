@@ -299,7 +299,7 @@ $(document).ready(function(){
         lat = coordinates[0]
         lng = coordinates[1]
         console.log(lat, lng)
-        $.getJSON('http://congress.mcommons.com/districts/lookup.json?lat='+lat+'&lng='+lng+'&callback=?')
+        $.getJSON('https://congress.mcommons.com/districts/lookup.json?lat='+lat+'&lng='+lng+'&callback=?')
         // $.getJSON('https://congress.api.sunlightfoundation.com/districts/locate?apikey=f15a9e31958f487aa6658b79f38b04ed&latitude='+lat+'&longitude='+lng+'&callback=?')
         .done(function(data){
           district_info = data.federal
