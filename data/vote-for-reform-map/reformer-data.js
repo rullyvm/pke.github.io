@@ -2207,21 +2207,6 @@ var reformData = {
     "source": "cosponsor"
   },
   {
-    "bioguide_id": "B000944",
-    "district": "00",
-    "first_name": "sherrod",
-    "last_name": "brown",
-    "party": "D",
-    "state": "OH",
-    "state_name": "Ohio",
-    "reforms": [],
-    "endorsed": false,
-    "suffix": "",
-    "role": "legislatorUpperBody",
-    "fec_id": "",
-    "source": "cosponsor"
-  },
-  {
     "bioguide_id": "",
     "fec_id": "H4MN06137",
     "role": "legislatorLowerBody",
