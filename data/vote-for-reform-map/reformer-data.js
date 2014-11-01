@@ -1111,21 +1111,6 @@ var reformData = {
     "source": "cosponsor"
   },
   {
-    "bioguide_id": "M001169",
-    "district": "00",
-    "first_name": "christopher",
-    "last_name": "murphy",
-    "party": "D",
-    "state": "CT",
-    "state_name": "Connecticut",
-    "reforms": [],
-    "endorsed": false,
-    "suffix": "",
-    "role": "legislatorUpperBody",
-    "fec_id": "",
-    "source": "cosponsor"
-  },
-  {
     "bioguide_id": "M001160",
     "district": "04",
     "first_name": "gwen",
