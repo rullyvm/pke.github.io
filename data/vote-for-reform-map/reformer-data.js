@@ -1502,21 +1502,6 @@ var reformData = {
     "source": "cosponsor"
   },
   {
-    "bioguide_id": "H001046",
-    "district": "00",
-    "first_name": "martin",
-    "last_name": "heinrich",
-    "party": "D",
-    "state": "NM",
-    "state_name": "New Mexico",
-    "reforms": [],
-    "endorsed": false,
-    "suffix": "",
-    "role": "legislatorUpperBody",
-    "fec_id": "",
-    "source": "cosponsor"
-  },
-  {
     "bioguide_id": "H000324",
     "district": "20",
     "first_name": "alcee",
