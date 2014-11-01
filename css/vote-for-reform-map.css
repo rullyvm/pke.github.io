@@ -141,6 +141,8 @@ path {
   .map-control li{width:80px;float:left;margin:0 10px 0 0;}
   .nav-stacked>li+li{margin-top:0;}
   #container_div{width:100%;margin:0;padding:0;}
+  #candidates .endorsement{font-size:14px;}
+  #candidates p.intro-text{font-size:17px;}
 }
 
 @media screen and (max-width: 992px) {
