@@ -126,7 +126,7 @@ hideSidebar: true
       <form id="email-form" class="email-form" method="post" action="https://pledge.mayday.us/r/subscribe">
         <h3>Commit to vote for reform</h3>
         <p>Enter your email and we'll send you a reminder on Election Day that you can share with your friends!</p>
-        <input type="hidden" name="redirect" value="http://dev.mayday.us/campaigns/vote-for-reform-share/" />
+        <input type="hidden" name="redirect" value="https://mayday.us/campaigns/vote-for-reform-share/" />
         <input type="hidden" name="source" value="vote-reform-lookup">
         <input type="hidden" name="address" value="">
         <input type="hidden" name="city" value="">
@@ -280,7 +280,6 @@ function promptStepTwo(relevantReformers) {
 }
 
 $(document).ready(function(){
-  $.get('http://api.reform.to/reformers/index.json')
   $('#lookup-form').validate({
     rules: {
       state: {required: true },
@@ -294,7 +293,7 @@ $(document).ready(function(){
       var address = parseFormData();
       // address='568 East Corning Street Red Oak, IA 51566'
 
-      $.getJSON('http://dev.virtualearth.net/REST/v1/Locations?key=An0HkWu-Q-XgX0M2cVzUqkfPLjxswE-hBYvSddZGfYIvjc4YkDvLqOTOUW4_YQdY&q=' + address+'&jsonp=?')
+      $.getJSON('//dev.virtualearth.net/REST/v1/Locations?key=An0HkWu-Q-XgX0M2cVzUqkfPLjxswE-hBYvSddZGfYIvjc4YkDvLqOTOUW4_YQdY&q=' + address+'&jsonp=?')
       .done(function(data) {
         coordinates = data.resourceSets[0].resources[0].point.coordinates
         lat = coordinates[0]
