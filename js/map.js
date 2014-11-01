@@ -52,7 +52,7 @@ function show_candidates(d) {
     _.each(d.properties.candidates, function(c) {
         var r       = reformData.reformers[c];
         r.full_name = r.first_name + ' ' + r.last_name;
-        r.race_type = (r.role == 'legislatorUpperBody') ? 'Senate' : 'House of Representatives';
+        r.race_type = (r.role == 'legislatorUpperBody') ? 'Senate' : 'Congress';
         $('#candidates').append(candidate(r));
     });
 }
@@ -90,8 +90,8 @@ function ready(error, us, congress) {
           .data(topojson.feature(us, us.objects.states).features)
         .enter().append("path")
           .attr("class", function(d) { return code_district(d); })
-          .on('mouseenter', show_candidates)
-          .on('mouseleave', show_default)
+          // .on('mouseenter', show_candidates)
+          // .on('mouseleave', show_default)
           .on('click', show_candidates)
           .attr("d", path);
   }
@@ -106,8 +106,8 @@ function ready(error, us, congress) {
           .data(topojson.feature(congress, congress.objects.districts).features)
         .enter().append("path")
           .attr("class", function(d) { return code_district(d); })
-          .on('mouseenter', show_candidates)
-          .on('mouseleave', show_default)
+          // .on('mouseenter', show_candidates)
+          // .on('mouseleave', show_default)
           .on('click', show_candidates)
           .attr("d", path);
 
