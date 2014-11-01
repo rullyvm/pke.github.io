@@ -574,22 +574,6 @@ var reformData = {
     "source": "cosponsor"
   },
   {
-    "bioguide_id": "S001170",
-    "district": 1,
-    "first_name": "carol",
-    "last_name": "shea-porter",
-    "party": "D",
-    "state": "NH",
-    "state_name": "New Hampshire",
-    "reforms": [4, 0],
-    "endorsed": false,
-    "suffix": "",
-    "role": "legislatorLowerBody",
-    "district": "01",
-    "fec_id": "",
-    "source": "cosponsor"
-  },
-  {
     "bioguide_id": "M001171",
     "district": 24,
     "first_name": "daniel",
@@ -650,22 +634,6 @@ var reformData = {
     "suffix": "",
     "role": "legislatorLowerBody",
     "district": "11",
-    "fec_id": "",
-    "source": "cosponsor"
-  },
-  {
-    "bioguide_id": "N000127",
-    "district": 8,
-    "first_name": "richard",
-    "last_name": "nolan",
-    "party": "D",
-    "state": "MN",
-    "state_name": "Minnesota",
-    "reforms": [4, 0],
-    "endorsed": false,
-    "suffix": "",
-    "role": "legislatorLowerBody",
-    "district": "08",
     "fec_id": "",
     "source": "cosponsor"
   },
@@ -1862,12 +1830,13 @@ var reformData = {
     "state": "NC",
     "state_name": "North Carolina",
     "reforms": [4, 0],
-    "endorsed": false,
+    "endorsed": true,
     "suffix": "",
     "role": "legislatorLowerBody",
     "district": "03",
-    "fec_id": "",
-    "source": "cosponsor"
+    "fec_id": "H2NC01081",
+    "source": "cosponsor",
+    "mayday_url": "https://mayday.us/jones/"
   },
   {
     "bioguide_id": "J000288",
@@ -3191,8 +3160,10 @@ var reformData = {
     "suffix": "",
     "state": "MN",
     "reforms": [4, 2, 1, 0],
+    "state_name": "Minnesota",
     "endorsed": false
-  }, {
+  },
+  {
     "bioguide_id": "",
     "fec_id": "H4NY23067",
     "role": "legislatorLowerBody",
@@ -3494,7 +3465,7 @@ var reformData = {
     "reforms": [0, 2, 4, 1, 3],
     "endorsed": false
   }, {
-    "bioguide_id": "",
+    "bioguide_id": "S001170",
     "fec_id": "H6NH01230",
     "role": "legislatorLowerBody",
     "district": "01",
@@ -3503,23 +3474,12 @@ var reformData = {
     "last_name": "shea-porter",
     "suffix": "",
     "state": "NH",
-    "reforms": [],
+    "reforms": [4, 0],
     "endorsed": true,
-    "mayday_url": "https://mayday.us/shea-porter/"
-   }, {
-    "bioguide_id": "",
-    "fec_id": "H2NC01081",
-    "role": "legislatorLowerBody",
-    "district": "03",
-    "first_name": "walter",
-    "middle_name": "",
-    "last_name": "jones",
-    "suffix": "",
-    "state": "NC",
-    "reforms": [],
-    "endorsed": true,
-    "mayday_url": "https://mayday.us/jones/"
-  }],
+    "mayday_url": "https://mayday.us/shea-porter/",
+    "state_name": "New Hampshire",
+    "party": "D"
+   }],
   "reforms": [{
     "id": 0,
     "title": "Government By the People Act",
