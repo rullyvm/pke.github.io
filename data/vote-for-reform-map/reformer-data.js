@@ -2087,21 +2087,6 @@ var reformData = {
     "source": "cosponsor"
   },
   {
-    "bioguide_id": "B001230",
-    "district": "00",
-    "first_name": "tammy",
-    "last_name": "baldwin",
-    "party": "D",
-    "state": "WI",
-    "state_name": "Wisconsin",
-    "reforms": [],
-    "endorsed": false,
-    "suffix": "",
-    "role": "legislatorUpperBody",
-    "fec_id": "",
-    "source": "cosponsor"
-  },
-  {
     "bioguide_id": "F000457",
     "district": "00",
     "first_name": "alan",
