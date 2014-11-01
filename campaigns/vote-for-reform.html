@@ -103,7 +103,8 @@ hideSidebar: true
     </div>
     <div id="js-no-candidates" style="display:none;">
       <h2>No reform candidates in your area.</h2>
-      <p>Too bad! Help us change that. You can start by using the link below to support anti-corruption candidates by sharing with your friends:</p>
+      <p>Too bad! <a href="#" class="js-search-again">Search again</a> or help us change that. You can start by using the link below to support anti-corruption candidates by sharing with your friends:</p>
+      <p style="text-align:center"><strong>Short link:</strong> <span style="font-family:Courier, Courier New" id="js-shortcode">http://goo.gl/sU1I1u</span></p>
       <div class="social-icons">
         <a class="twitter" href="https://twitter.com/home?status=I%20just%20found%20a%20reform%20candidate%20in%20my%20district%20with%20the%20%40MAYDAYUS%20Map%20-%20use%20it%20to%20%23vote4reform%20in%20your%20state%20http%3A%2F%2Fgoo.gl%2FsU1I1"
             target="_blank"><img src="/images/share_twitter.png"></a><br />
@@ -113,7 +114,7 @@ hideSidebar: true
     </div>
 
     <div id="js-vote" style="display:none;">
-      <h2>Here are your candidates</h2>
+      <h2>Here are your candidates<br /><small>Or you can <a href="#" class="js-search-again">Search again</a></small></h2>
       <p>These candidates have pledged to back legislation which fundamentally changes the way politicians raise money:</p>
       <div class="row" id="js-candidate-wrap">
         <div id="candidate-template" class="hidden reformer col-md-6">
@@ -151,21 +152,7 @@ hideSidebar: true
   </div>
 </div>
 
-<style type="text/css" media="screen">
-  .capitalize{text-transform:capitalize;}
-  #container_div{min-height:400px;}
-  .reformer {margin-bottom:10px;}
-    .reformer img{margin-right:8px;border-radius:4px;margin-bottom:8px;}
-    .reformer h4{padding-bottom:0;line-height:normal;font-weight:700}
-    .reformer p{font-size:14px;line-height:normal;}
-  .email-form {padding:14px;margin-top:20px;background: #eee; border-radius: 3px; overflow: hidden;}
-    .email-form h3{padding-bottom:10px;}
-    .email-form p{margin-bottom:6px;font-size:16px;}
-    .email-form .checkbox{display:inline-block;margin-top:0px}
-    .email-form .form-actions{display:inline;}
-
-</style>
-<link rel="stylesheet" href="/css/vote-for-reform-map.css">
+<link rel="stylesheet" href="/css/vote-for-reform-map.css?2">
 <script src="/data/vote-for-reform-map/reformer-data.js" type="text/javascript" charset="utf-8"></script>
 <script>
 function parseFormData() {
@@ -199,33 +186,6 @@ function filterRelevantReformers(district_info) {
   return output;
 }
 
-// function aggregateAndProcessCandidateInfo (relevantReformers,contests) {
-//   $(relevantReformers).each(function() {
-//     var reformer = this;
-//     targetContest = contests.filter(function(data){ return data.roles[0] == reformer.role })[0];
-//     if(targetContest){
-//       reformerRegex = new RegExp(reformer.last_name,'i');
-//       targetCandidateInfo = targetContest.candidates.filter(function(data){ return reformerRegex.test(data.name) })[0];
-
-//       if(targetCandidateInfo){
-//         $.extend(reformer, targetCandidateInfo);
-//         parseTemplateValues(reformer);
-//       }
-//     }
-//   });
-//   removeInactiveReformers(relevantReformers)
-// }
-
-// function removeInactiveReformers(reformers){
-//   toRemove = []
-//   $(reformers).each(function(i, elem){
-//     if (!elem.hasOwnProperty('candidateUrl')){toRemove.push(i)}
-//   });
-//   $(toRemove.reverse()).each(function() {
-//     reformers.splice(this,1)
-//   })
-// }
-
 function parseTemplateValues(reformer){
   reformer.state_name = reformer.district_display_name;
   reformer.contest_name = (reformer.role == 'legislatorLowerBody' ? 'Congress' : 'Senate');
@@ -247,7 +207,6 @@ function parseSupportedLegislation(supportedIds){
     output = reformData.reforms.filter(function(data){
       return $.inArray(data.id, supportedIds);
     })
-    console.log(output, 'after map', $($.makeArray(output)).map(function(i,reformer){ return reformer.title}));
     output = $($.makeArray(output)).map(function(i,reformer){ return reformer.title})
     output = $.makeArray(output).join(', ').replace(/, ([\w]*)$/, "and $1");
   }else{
@@ -257,13 +216,12 @@ function parseSupportedLegislation(supportedIds){
 }
 
 function addReformerCandidate(reformer) {
-  $template = $('#candidate-template').clone().removeClass('hidden') ;
+  $template = $('#candidate-template').clone().removeClass('hidden');
 
   $template.find('h4').text(reformer.full_name);
   $template.find('h5').text(reformer.contest_name);
   $template.find('p').html(reformer.bio_text);
   $template.find('img').prop('src', '/images/congress/' + reformer.bioguide_id + '.jpg')
-  console.log($template);
   $('#js-candidate-wrap').append($template);
 }
 
@@ -277,6 +235,13 @@ function promptStepTwo(relevantReformers) {
   }else{
     $('#js-no-candidates').slideDown('0.2');
   }
+}
+
+function searchAgain(argument) {
+  $('#js-vote').slideUp('0.2');
+  $('#js-no-candidates').slideUp('0.2');
+  $('#js-query').slideDown('0.2');
+  $('#js-candidate-wrap').not('.hidden').remove();
 }
 
 $(document).ready(function(){
@@ -298,7 +263,6 @@ $(document).ready(function(){
         coordinates = data.resourceSets[0].resources[0].point.coordinates
         lat = coordinates[0]
         lng = coordinates[1]
-        console.log(lat, lng)
         $.getJSON('https://congress.mcommons.com/districts/lookup.json?lat='+lat+'&lng='+lng+'&callback=?')
         // $.getJSON('https://congress.api.sunlightfoundation.com/districts/locate?apikey=f15a9e31958f487aa6658b79f38b04ed&latitude='+lat+'&longitude='+lng+'&callback=?')
         .done(function(data){
@@ -326,16 +290,13 @@ $(document).ready(function(){
 $('#email-form').validate({
     rules: {
       email: {required: true, email: true },
-    }//,
-    // submitHandler: function(form) {
-    //   $.post('https://pledge.mayday.us/r/subscribe', form.serialize())
-    //   .done(function(){
-    //     contentSection = $('#js-no-candidates');
-    //     contentSection.find('h2').text('Thanks for committing to vote!')
-    //     contentSection.find('p').html('You can continue to help by <a href="http://calloutthevote.mayday.us/act/COTV_2014_mayday">>volunteering</a> and/or sharing with your friends:')
-    //   })
-    // }
+    }
   });
+  $('#js-shortcode').on('click', function(){ $(this).selectText(); })
+  $('.js-search-again').on('click', function(e){
+    e.preventDefault();
+    searchAgain();
+  })
 });
 </script>
 
