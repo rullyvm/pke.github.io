@@ -856,21 +856,6 @@ var reformData = {
     "source": "cosponsor"
   },
   {
-    "bioguide_id": "S001162",
-    "district": "13",
-    "first_name": "allyson",
-    "last_name": "schwartz",
-    "party": "D",
-    "state": "PA",
-    "state_name": "Pennsylvania",
-    "reforms": [0],
-    "endorsed": false,
-    "suffix": "",
-    "role": "legislatorLowerBody",
-    "fec_id": "",
-    "source": "cosponsor"
-  },
-  {
     "bioguide_id": "S001145",
     "district": "09",
     "first_name": "janice",
