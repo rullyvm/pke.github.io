@@ -158,20 +158,18 @@ hideSidebar: true
 function parseFormData() {
   var output = [];
   var address_values = $('#lookup-form .form-control').each(function() {
-    $('#email-form input[name=' + $(this).prop('name')+']').val(this.value)
+    name = $(this).prop('name')
+    $('#email-form input[name=' + name+']').val(this.value)
+    $.cookie(name, this.value)
     output.push(this.value)
   });
   return output.join(' ');
 }
 
-function filterValidContests(contests){
-  output = contests.filter(function(data){
-    return data.hasOwnProperty('roles') &&
-    data.hasOwnProperty('level') &&
-    data.level[0] == "country" &&
-    /legislatorUpperBody|legislatorLowerBody/.test(data.roles[0]);
-  });
-  return output;
+function loadFormData(){
+  $('#lookup-form .form-control').each(function() {
+    $(this).val($.cookie($(this).prop('name')))
+  })
 }
 
 function filterRelevantReformers(district_info) {
@@ -226,6 +224,9 @@ function addReformerCandidate(reformer) {
 }
 
 function promptStepTwo(relevantReformers) {
+  $.each(relevantReformers, function(){
+    parseTemplateValues(this);
+  })
   $('#js-query').slideUp('0.2');
   if(relevantReformers.length > 0){
     $(relevantReformers).each(function(){
@@ -244,7 +245,14 @@ function searchAgain(argument) {
   $('#js-candidate-wrap').not('.hidden').remove();
 }
 
+function loadErrorMessage () {
+  $('#lookup-form').find('input, textarea, button').prop('disabled',false);
+  $('#lookup-form').css('opacity','1');
+  $('#lookup-form').prepend('<div class="error">Whoops! We didn\'t understand your address. Please try again!</div>');
+}
+
 $(document).ready(function(){
+  loadFormData();
   $('#lookup-form').validate({
     rules: {
       state: {required: true },
@@ -267,24 +275,11 @@ $(document).ready(function(){
         // $.getJSON('https://congress.api.sunlightfoundation.com/districts/locate?apikey=f15a9e31958f487aa6658b79f38b04ed&latitude='+lat+'&longitude='+lng+'&callback=?')
         .done(function(data){
           district_info = data.federal
-          // var validContests = filterValidContests(data.contests);
           var relevantReformers = filterRelevantReformers(district_info);
-          // aggregateAndProcessCandidateInfo(relevantReformers,validContests);
-          $.each(relevantReformers, function(){
-            parseTemplateValues(this);
-          })
           promptStepTwo(relevantReformers)
 
-        }).fail(function() {
-          $(form).find('input, textarea, button').prop('disabled',false);
-          $(form).css('opacity','1');
-          $(form).prepend('<div class="error">Whoops! We didn\'t understand your address. Please try again!</div>');
-        });
-      }).fail(function() {
-        $(form).find('input, textarea, button').prop('disabled',false);
-        $(form).css('opacity','1');
-        $(form).prepend('<div class="error">Whoops! We didn\'t understand your address. Please try again!</div>');
-      });
+        }).fail(function() { loadErrorMessage() });
+      }).fail(function() { loadErrorMessage() });
     }
   });
 $('#email-form').validate({

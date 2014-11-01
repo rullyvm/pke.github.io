@@ -246,6 +246,7 @@ footer {color: #999;background-color:black;}
 
 label.error{color:#d53a38;}
 input.error{border: 1px solid #d53a38;background: rgba(213,58,56,0.1);}
+div.error{color: #cc3333; margin-bottom: 10px;}
 
 .social-icons{margin: 25px 0 0 0;text-align:center;}
 .social-icons a{width: 270px;height: 60px;line-height: 58px;font-size: 20px;display: inline-block;color: #fff;margin: 0 0 20px 0;border-radius: 5px;text-align: center;}
