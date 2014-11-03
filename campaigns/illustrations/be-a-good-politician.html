@@ -43,6 +43,8 @@ body > .rally.full-width{background:#fcf9f0 url(/images/campaigns/20141103-illus
         .heading.three{background-image:url(/images/campaigns/20141103-illustrations/20141102-be-a-good-politician-heading-1200-03.png);}
         .heading.four{background-image:url(/images/campaigns/20141103-illustrations/20141102-be-a-good-politician-heading-1200-04.png);}
       .call-to-action{background-color:#cae3bc;border-radius:5px;padding:20px;font-size:20px;margin-bottom:60px;margin-top:10px}
+    a.next-graphic{display:inline-block;font-family:helvetica, helvetica neue;font-weight:700;padding:5px 12px;color:#fff;text-transform:uppercase;width:auto;box-sizing:content-box;border-radius: 5px; margin: 0 auto; background: #ff552a;}
+
 
 @media screen and (max-width: 1199px) and (min-width:991px){
   .graphic{margin-bottom:0;min-height:290px}
@@ -52,12 +54,16 @@ body > .rally.full-width{background:#fcf9f0 url(/images/campaigns/20141103-illus
   .good-politician-wrap .col-md-3{width:50%;float:left;}
     .graphic.one, .graphic.two{margin-bottom:40px;}
 }
+@media screen and (min-width: 581px) {
+  .footer-text .col-md-4:last-child{text-align:right;}
+}
 @media screen and (max-width: 580px) {
   .main-banner.ir{min-height:130px;}
   .heading{padding-bottom:20px;}
   .graphic{min-height:270px}
-    .graphic.one, .graphic.two{margin-bottom:00px;}
+    .graphic.one, .graphic.two{margin-bottom:0px;}
   .footer-text{float:none !important;display:block;text-align:center;}
+  a.next-graphic{margin:20px;}
 }
 @media screen and (max-width: 480px) {
   .main-banner.ir{min-height:90px;}
@@ -94,8 +100,19 @@ body > .rally.full-width{background:#fcf9f0 url(/images/campaigns/20141103-illus
     <div class="col-md-12">
       <p class="call-to-action">When someone gives you a gift, you feel obligated to return the favor. The exact same thing happens everyday in congress. Help us reclaim our Democracy. <strong><a href="/campaigns/vote-for-reform/">Vote for reform</a></strong>.</p>
     </div>
-      <span class="pull-left footer-text"><a href="/images/campaigns/20141103-illustrations/20141102-be-a-good-politician-download.jpg" title="">Download Graphic</a></span>
-      <small class="pull-right footer-text"><a href="http://incitementdesign.com/" target="_blank">Created for MAYDAY by Incitement Design</a></small>
+  </div>
+    <div class="col-md-12">
+    <div class="row footer-text">
+       <div class="col-md-4">
+         <span class=""><a href="/images/campaigns/20141103-illustrations/20141102-be-a-good-politician-download.jpg" title="">Download Graphic</a></span>
+       </div>
+       <div class="col-md-4">
+         <a href="/campaigns/illustrations/buying-legislation-safely/" class="row-centered next-graphic">Buying Legislation Safely</a>
+       </div>
+       <div class="col-md-4">
+         <small class=""><a href="http://incitementdesign.com/" target="_blank">Created for MAYDAY by Incitement Design</a></small>
+       </div>
+     </div>
   </div>
 </div>
 {% endcapture %}
