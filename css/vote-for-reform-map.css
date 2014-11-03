@@ -1,3 +1,5 @@
+.subpage-content{padding-bottom:0;}
+
 /***** GENERAL STYLES ****/
 
 .capitalize { text-transform: capitalize; }
@@ -132,6 +134,8 @@ path {
   .email-form p{margin-bottom:6px;font-size:16px;}
   .email-form .checkbox{display:inline-block;margin-top:0px}
   .email-form .form-actions{display:inline;}
+
+.data-source-reference{line-height:1em; color:#555; font-size:12px;margin:30px 0 5px;padding-left:10px;}
 
 @media screen and (max-width: 1400px) {
   #candidates {

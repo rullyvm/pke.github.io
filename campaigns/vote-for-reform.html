@@ -34,7 +34,7 @@ hideSidebar: true
       <li><a class="house" data-chamber="house">House</a></li>
     </ul>
     <div id="container_div" class="col-md-11 col-md-offset-1">
-      <svg></svg>
+      <svg style="min-height:300px"></svg>
       <div class="legend">
         <div class="map-key">
           <span class="inline"><span class="mayday box inline"></span>MAYDAY Candidate</span>
@@ -68,23 +68,14 @@ hideSidebar: true
   <div class="col-md-4">
     <div id="js-query">
       <h2>Find your reform candidate!</h2>
-      <p>Locate pro-reform candidates in your district and state. Enter your location, and we will locate candidates who have pledged to stop the corrupting influence of big money on politics. Before you go to the polls on Nov. 4 be sure to use this map so that you can #vote4reform.</p>
+      <p>Locate pro-reform candidates in your district and state. Enter your location, and we will locate candidates who have pledged to stop the corrupting influence of big money on politics. Before you go to the polls on Nov. 4 use this map and #vote4reform!</p>
       <form id="lookup-form" name="contact" method="get" action="#">
-        <div class="form-group">
-          <label for="address">Address</label>
-          <input type="text" name="address" value="" class="form-control" />
-        </div>
-
-        <div class="form-group">
-          <label for="city">City</label>
-          <input type="text" name="city" value="" class="form-control" />
-        </div>
 
         <div class="row">
           <div class="col-md-8">
             <div class="form-group">
-              <label for="state">State</label>
-              {% include state_input.html name='state' %}
+              <label for="address">Address</label>
+              <input type="text" name="address" value="" class="form-control" />
             </div>
           </div>
 
@@ -148,8 +139,10 @@ hideSidebar: true
         </div>
       </form>
     </div>
-
   </div>
+</div>
+<div class="row">
+  <p class="data-source-reference"><small>Source: Mayday Endorsed Candidates &amp; Reform.to. Candidates either sponsored/cosponsored significant pieces of reform legislation or submitted a pledge to do so at <a href="/files/reform.to-pledge-request.docx" target="_blank">reform.to</a>.</small></p>
 </div>
 
 <link rel="stylesheet" href="/css/vote-for-reform-map.css?2">
@@ -269,8 +262,12 @@ $(document).ready(function(){
       $.getJSON('//dev.virtualearth.net/REST/v1/Locations?key=An0HkWu-Q-XgX0M2cVzUqkfPLjxswE-hBYvSddZGfYIvjc4YkDvLqOTOUW4_YQdY&q=' + address+'&jsonp=?')
       .done(function(data) {
         coordinates = data.resourceSets[0].resources[0].point.coordinates
+        address = data.resourceSets[0].resources[0].address
         lat = coordinates[0]
         lng = coordinates[1]
+        $('#email-form[name=state]').val(address.adminDistrict)
+        $('#email-form[name=city]').val(address.locality)
+
         $.getJSON('https://congress.mcommons.com/districts/lookup.json?lat='+lat+'&lng='+lng+'&callback=?')
         // $.getJSON('https://congress.api.sunlightfoundation.com/districts/locate?apikey=f15a9e31958f487aa6658b79f38b04ed&latitude='+lat+'&longitude='+lng+'&callback=?')
         .done(function(data){
