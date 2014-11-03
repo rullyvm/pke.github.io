@@ -4,6 +4,9 @@ body {padding-top: 20px;color: #333;}
 
 .default-body {padding-top: 70px;}
 #candidate {padding-top: 90px;}
+body > img{position:absolute;}
+body > .rally.full-width{min-height:400px}
+
 
 /* START HEADER */
 .navbar-toggle .icon-bar {background-color: #000}
@@ -117,11 +120,11 @@ footer {color: #999;background-color:black;}
   .navbar-brand {background-size: contain;width: 258px;}}
 
 /* For iPad and smaller screens */
-@media (max-width: 768px) {
+@media (max-width: 769px) {
+  .navbar-primary .navbar-nav>li>a {padding: 13px 0 13px 10px;}
   .navbar-collapse.in {overflow-y: auto;min-width:290px;margin-left: -130px;}
   .navbar-primary .in .navbar-nav>li {background-color: rgba(255,255,255,0.9);}
   .navbar-primary .navbar-nav>li:after{display:none;}
-  .navbar-primary .navbar-nav>li.btn-wrap{width:100%;}
 }
 
 /* For iPhone and smaller screens */
@@ -246,6 +249,7 @@ footer {color: #999;background-color:black;}
 
 label.error{color:#d53a38;}
 input.error{border: 1px solid #d53a38;background: rgba(213,58,56,0.1);}
+div.error{color: #cc3333; margin-bottom: 10px;}
 
 .social-icons{margin: 25px 0 0 0;text-align:center;}
 .social-icons a{width: 270px;height: 60px;line-height: 58px;font-size: 20px;display: inline-block;color: #fff;margin: 0 0 20px 0;border-radius: 5px;text-align: center;}
@@ -286,24 +290,24 @@ input.error{border: 1px solid #d53a38;background: rgba(213,58,56,0.1);}
 
 /* v9green
 ======================================================================== */
-/*a {color: #15405e;outline: none !important;}*/
 a:hover {text-decoration: none;}
 p {font-size: 18px;margin: 0 0 1.2em;}
 h2 {font-size: 41px;color: #313945;margin: 0 0 .5em;}
 h3{color: #313945;}
 .row-centered {text-align:center;}
 .clear-modern{overflow:hidden;}
+.no-bullet{list-style-type: none !important;}
 
 .button {font: 400 22px/50px 'Questrial', Arial, sans-serif;text-transform: uppercase;text-decoration: none;color: #fff;letter-spacing: 1px;display: inline-block;background: #c33 no-repeat 100% 50%;height: 50px;padding: 0 30px;border-radius: 30px;overflow: hidden; -webkit-user-select: none;-moz-user-select: none;-ms-user-select: none;user-select: none;}
 .button:hover {background-color: #b01a1a;}
-.button.arrow {padding-right: 54px;background-image: url(../images/button-array.png);}
+.button.arrow {padding-right: 54px;background-image: url(/images/button-array.png);}
 .btn-group {text-align: center;margin: 77px auto 0;}
   .btn-group .button {margin: 0 17px;}
 
 /* anchors for youtube videos */
 a.offsetAnchor {
-    display:block; 
-    position: relative; 
-    top:-100px; 
+    display:block;
+    position: relative;
+    top:-100px;
     visibility:hidden;
 }
