@@ -25,7 +25,7 @@ body > .rally.full-width{min-height:400px}
 
   .navbar-primary .navbar-nav>li>a {padding: 13px 20px;text-transform: uppercase;color: #444;font-weight: 400;letter-spacing:90%;height: 45px;}
 
-    .jumbotron .btn {
+    .jumbotron .btn, .arrow-button {
       background-color: #cc3333;
       border: 0;
       border-radius: 0;
@@ -39,7 +39,7 @@ body > .rally.full-width{min-height:400px}
       box-shadow: 0 0 3px rgba(0,0,0,0.3);
       font-family:'Roboto', Helvetica, Arial, sans-serif;
     }
-    .jumbotron .btn:after{
+    .jumbotron .btn:after, .arrow-button:after{
       content: "";
       position: absolute;
       top: 5px; /* move it down because of rounded corners */
