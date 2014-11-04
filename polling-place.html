@@ -1,0 +1,54 @@
+---
+layout: default
+title: #vote4reform - MAYDAY.US
+omit_title_suffix: true
+cssid: good-politician
+hideSidebar: true
+---
+{% capture meta_content %}
+  <title>See Politician Run</title>
+  <meta content="See Politician Run" itemprop="name" />
+  <meta property="fb:app_id" value="515720611858523" />
+  <meta content="https://mayday.us/campaigns/illustrations/see-politician-run/" property="og:url" />
+  <meta content="https://mayday.us/campaigns/illustrations/see-politician-run/" name="twitter:url" />
+  <meta content="https://mayday.us/images/campaigns/20141103-illustrations/20141102-see-politician-run-download.jpg" property="og:image" />
+  <meta content="https://mayday.us/images/campaigns/20141103-illustrations/20141102-see-politician-run-download.jpg" name="twitter:image" />
+  <meta content="See Politician Run" property="og:title" />
+  <meta content="See Politician Run" name="twitter:title" />
+  <meta content="Governing is not Child's play. Help us reclaim our democracy. #vote4reform" property="og:description" />
+  <meta content="Governing is not Child's play. Help us reclaim our democracy. http://goo.gl/GJLgBL" name="twitter:description" />
+  <meta content="@mayday" name="twitter:site" />
+  <meta content="summary_large_image" name="twitter:card" />
+  <meta content="https://mayday.us/images/campaigns/20141103-illustrations/20141102-see-politician-run-download.jpg" name="twitter:image:src" />
+{% endcapture %}
+
+{% capture subhead %} A citizen-funded super PAC, to end all super PACs. {% endcapture %}
+{% capture pageid %} vote-for-reform {% endcapture %}
+
+{% capture content %}
+<script type="text/javascript" src="https://voter-info-tool.appspot.com/js/loader.js"></script>
+<script>
+$(document).ready(function(){
+  var cookie = $.cookie();
+  if(cookie.hasOwnProperty('address')){
+    full_address = [cookie.address]
+    if(cookie.hasOwnProperty('city')){full_address.push(cookie.city) };
+    if(cookie.hasOwnProperty('state')){full_address.push(cookie.state) };
+    if(cookie.hasOwnProperty('zip')){full_address.push(cookie.zip) };
+    address_string = full_address.join(' ');
+    vit.load({election_id:4100, address: address_string});
+  }else{
+    vit.load({election_id:4100});
+  }
+});
+</script>
+
+<script type="text/javascript" src="https://voter-info-tool.appspot.com/js/loader.js"></script>
+<div id="_vit"></div>
+
+
+<h3 style="margin-top:10px">Don't know who to vote for?  <a href="https://mayday.us/campaigns/vote-for-reform/">Look up your local reformers</a></h3>
+{% endcapture %}
+
+{% include subpage.html %}
+
