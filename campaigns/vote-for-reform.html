@@ -26,7 +26,11 @@ hideSidebar: true
 {% capture pageid %} vote-for-reform {% endcapture %}
 
 {% capture content %}
+<style>
 
+.subpage-content h2{font-family: roboto,sans; margin-bottom:0; padding-bottom:0.5em; }
+
+</style>
 <div class="row">
   <div class="col-md-8">
     <ul class="nav nav-pills nav-stacked map-control" style="">
@@ -194,16 +198,16 @@ function parseTemplateValues(reformer){
 }
 
 function parseSupportedLegislation(supportedIds){
-  if(supportedIds.length > 0){
-    output = reformData.reforms.filter(function(data){
-      return $.inArray(data.id, supportedIds);
-    })
-    output = $($.makeArray(output)).map(function(i,reformer){ return reformer.title})
-    output = $.makeArray(output).join(', ').replace(/, ([\w]*)$/, "and $1");
-  }else{
-    output = 'campaign reform';
-  }
-  return output;
+  // if(supportedIds.length > 0){
+  //   output = reformData.reforms.filter(function(data){
+  //     return $.inArray(data.id, supportedIds);
+  //   })
+  //   output = $($.makeArray(output)).map(function(i,reformer){ return reformer.title})
+  //   output = $.makeArray(output).join(', ').replace(/, ([\w]*)$/, "and $1");
+  // }else{
+  //   output = 'campaign reform';
+  // }
+  return 'campaign reform';
 }
 
 function addReformerCandidate(reformer) {
@@ -236,6 +240,8 @@ function searchAgain(argument) {
   $('#js-no-candidates').slideUp('0.2');
   $('#js-query').slideDown('0.2');
   $('#js-candidate-wrap').not('.hidden').remove();
+  $('#lookup-form').find('input, textarea, button').prop('disabled',false);
+  $('#js-query form').css('opacity','1');
 }
 
 function loadErrorMessage () {
