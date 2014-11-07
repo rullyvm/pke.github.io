@@ -9,8 +9,31 @@
       <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
   <![endif]-->
   {% include header.html %}
+  <div class="carousel-wrap">
+      <div id="carousel-jumbotron" class="carousel slide" data-ride="carousel">
+        <!-- Indicators -->
+        <ol class="carousel-indicators">
+          <li data-target="#carousel-jumbotron" data-slide-to="0" class="active"></li>
+          <li data-target="#carousel-jumbotron" data-slide-to="1"></li>
+          <li data-target="#carousel-jumbotron" data-slide-to="2"></li>
+        </ol>
 
-  <div class="thank-you active">{% include jumbotrons/20141105-thank-you.html %}</div>
+        <!-- Wrapper for slides -->
+        <div class="carousel-inner">
+          <div class="item timeline-graphic active">{% include jumbotrons/20141104-timeline-graphic.html %}</div>
+          <div class="item time-video">{% include jumbotrons/20141028-time-video.html %}</div>
+          <div class="item winners">{% include jumbotrons/20141025-mayday-in-30-winners.html %}</div>
+
+        </div>
+        <!-- Controls -->
+        <a class="left carousel-control" href="#carousel-jumbotron" role="button" data-slide="prev">
+          <span class="glyphicon glyphicon-chevron-left"></span>
+        </a>
+        <a class="right carousel-control" href="#carousel-jumbotron" role="button" data-slide="next">
+          <span class="glyphicon glyphicon-chevron-right"></span>
+        </a>
+      </div>
+    </div>
 
 {% include jumbotrons/jumbotron-bottom.html %}
 
@@ -87,6 +110,17 @@
         },
       });
     updateTotals();
+
+    $('#carousel-jumbotron').carousel({
+      interval: 20000
+    });
+    $('input').on('focus', function(){
+        $("#carousel-jumbotron").carousel('pause');
+      }).on('blur',function() {
+        $("#carousel-jumbotron").carousel('cycle');
+    });
+    $('#carousel-jumbotron .item').carouselHeights();
+
 
   });
   </script>
