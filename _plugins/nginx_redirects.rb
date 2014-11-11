@@ -1,5 +1,13 @@
 module Jekyll
 
+  class NginxRedirects < Generator
+    priority :low
+
+    def generate(site)
+      site.static_files << NginxRedirectsFile.new(site, site.source, '/', 'redirects.nginx')
+    end
+  end
+
   # generate nginx redirects file
   class NginxRedirectsFile < StaticFile
 
@@ -11,10 +19,7 @@ module Jekyll
     end
 
     def write(dest)
-      if file_contents.length > 0
-        File.open(dest+'/redirects.nginx', 'w') { |file| file.write(file_contents) } #for jekyll-hooks
-        @site.static_files << NginxRedirectsFile.new(@site, @site.source, '/', 'redirects.nginx')
-      end
+      File.open(dest+'/redirects.nginx', 'w') { |file| file.write(file_contents) } if file_contents.length > 0
     end
 
     def nginx_redirect(origin,destination)
