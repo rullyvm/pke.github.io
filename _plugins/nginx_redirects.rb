@@ -19,23 +19,23 @@ module Jekyll
     end
 
     def write(dest)
-      File.open(dest+'/redirects.nginx', 'w') { |file| file.write(file_contents) } if file_contents.length > 0
+      File.open(dest+'/redirects.nginx', 'w') { |file| file.write(redirect_rules) } if redirect_rules.length > 0
     end
 
-    def nginx_redirect(origin,destination)
-      "location #{origin} { return 301 #{destination}; }"
+    def redirect_rules
+      @redirect_rules ||= redirect_pages.map do |page|
+        page.data['redirects'].map do |redirect_origin|
+          redirect_rule(redirect_origin, page.url)
+        end
+      end.flatten.uniq.join("\n")
     end
 
     def redirect_pages
       @redirected_pages ||= (@site.pages + @site.posts).select{|post| post.data.key? 'redirects' }
     end
 
-    def file_contents
-      @file_contents ||= redirect_pages.map do |page|
-        page.data['redirects'].map do |redirect_origin|
-          nginx_redirect(redirect_origin, page.url)
-        end
-      end.flatten.uniq.join("\n")
+    def redirect_rule(origin,destination)
+      "location #{origin} { return 301 #{destination}; }"
     end
 
   end
