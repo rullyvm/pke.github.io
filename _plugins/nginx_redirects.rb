@@ -25,8 +25,7 @@ module Jekyll
       end.flatten.uniq.join("\n")
 
       if output.length > 0
-        File.open('_site/redirects.nginx', 'w') { |file| file.write(output) }
-        File.open('redirects.nginx', 'w') { |file| file.write(output) } #for jekyll-hooks
+        File.open(site.dest+'/redirects.nginx', 'w') { |file| file.write(output) } #for jekyll-hooks
         # Add this output file so it won't be "cleaned away"
         site.static_files << NginxRedirectsFile.new(site, site.source, '', 'redirects.nginx')
       end
