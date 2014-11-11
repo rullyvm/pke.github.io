@@ -11,7 +11,8 @@ module Jekyll
   # generate nginx redirects file
   class NginxRedirects < Generator
 
-    safe true
+
+    # safe true
     priority :low
 
     # find all posts with a redirect property and create a new page for each entry
