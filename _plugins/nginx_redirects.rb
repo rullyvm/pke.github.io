@@ -31,7 +31,7 @@ module Jekyll
     end
 
     def file_contents
-      @file_contents ||= pages_with_redirects.map do |page|
+      @file_contents ||= redirect_pages.map do |page|
         page.data['redirects'].map do |redirect_origin|
           nginx_redirect(redirect_origin, page.url)
         end
