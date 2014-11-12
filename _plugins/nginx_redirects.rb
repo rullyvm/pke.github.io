@@ -19,7 +19,18 @@ module Jekyll
     end
 
     def write(dest)
-      File.open(dest+'/redirects.nginx', 'w') { |file| file.write(redirect_rules) } if redirect_rules.length > 0
+      if redirect_rules.length > 0
+        File.open(dest+'/redirects.nginx', 'w') do |file|
+          file.write(redirect_rules)
+          file << "\n\n"
+          file << included_redirects
+        end
+      end
+    end
+
+    def included_redirects
+      included_redirects_file = '_includes/redirects.nginx'
+      @included_redirects ||= File.exists?(included_redirects_file) ? IO.read(included_redirects_file) : ''
     end
 
     def redirect_rules

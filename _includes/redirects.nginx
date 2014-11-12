@@ -1,0 +1,35 @@
+# START _includes/redirects.nginx
+#
+# This file contiains presistant redirects that don't point to in site files.
+# See _plugins/nginx_redirects.rb for more info.
+
+location /blog/ { return 301 http://blog.mayday.us/; }
+location /2014/07/04/LessigsLetter/ { return 301 http://blog.mayday.us/post/97831649695/; }
+location /2014/07/04/WeDidIt/ { return 301 http://blog.mayday.us/post/98259987795/; }
+location /2014/07/06/WhatsNext/ { return 301 http://blog.mayday.us/post/98259988480/; }
+location /2014/07/08/VIDEOThankYou/ { return 301 http://blog.mayday.us/post/98259989195/; }
+location /2014/07/11/VIDEOCallTimeJuly10/ { return 301 http://blog.mayday.us/post/98259990125/; }
+location /2014/07/14/NPRAudio/ { return 301 http://blog.mayday.us/post/98259991065/heres-an-audio-podcast-of-prof-lessig; }
+location /2014/07/15/PressReleaseFECFiling/ { return 301 http://blog.mayday.us/post/98259991830/; }
+location /2014/07/16/SuggestCandidate/ { return 301 http://blog.mayday.us/post/98259992635/; }
+location /2014/07/20/UpdateTiming/ { return 301 http://blog.mayday.us/post/98259993345/; }
+location /2014/07/24/Transparency/ { return 301 http://blog.mayday.us/post/98259994120/; }
+location /2014/07/29/FAQsOnPicks/ { return 301 http://blog.mayday.us/post/98259994875/; }
+location /2014/07/29/FirstTargets/ { return 301 http://blog.mayday.us/post/98259995655/; }
+location /2014/07/29/ItsOn/ { return 301 http://blog.mayday.us/post/98259996370/; }
+location /2014/07/30/EmailFundraising/ { return 301 http://blog.mayday.us/post/98259997085/; }
+location /2014/08/01/escapethe90s/ { return 301 http://blog.mayday.us/post/93500567957/; }
+location /2014/08/05/our-fundraising-so-far/ { return 301 http://blog.mayday.us/post/98259998165/; }
+location /2014/08/11/CandidateAnnouncement/ { return 301 http://blog.mayday.us/post/98259998960/; }
+location /2014/08/13/the-most-important-anti-corruption-candidate/ { return 301 http://blog.mayday.us/post/98259991065/; }
+location /2014/08/19/data-release-2/ { return 301 http://blog.mayday.us/post/98260000525/; }
+location /2014/08/26/mayday-labs-launch/ { return 301 http://blog.mayday.us/post/98260002390/; }
+location /2014/08/27/gallego-victory/ { return 301 http://blog.mayday.us/post/98260003100/; }
+location /2014/08/29/labor-day-message/ { return 301 http://blog.mayday.us/post/98260003805/; }
+location /2014/09/05/humphery-endorsement-ad/ { return 301 http://blog.mayday.us/post/98260004575/; }
+location /2014/09/09/stark360-is-not-a-180/ { return 301 http://blog.mayday.us/post/98260005380/; }
+location /2014/09/10/a-history-lesson/ { return 301 http://blog.mayday.us/post/98260006075/; }
+location /2014/09/13/optimism/ { return 301 http://blog.mayday.us/post/98260006830/; }
+location /2014/09/16/donor-data-release-4/ { return 301 http://blog.mayday.us/post/98260008690/; }
+
+ # END _includes/redirects.nginx
