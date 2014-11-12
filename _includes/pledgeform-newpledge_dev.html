@@ -1,7 +1,7 @@
 <script src="//fgnass.github.io/spin.js/spin.min.js"></script>
 <script src="https://code.jquery.com/jquery-migrate-1.2.1.js"></script>
 <script src="https://checkout.stripe.com/checkout.js"></script>
-<script src="https://mayday.us/js/pledge.js"></script>
+<script src="https://pledgedev.mayday.us/static/pledge.js"></script>
 {% if page.disable-pledge-sidebar == null %}
 <link rel="stylesheet" href="{{ site.baseurl }}/css/landing-newpledge.css?4" />
 {% else %}
@@ -242,10 +242,9 @@ limitations under the License.
 	        </div>
 
 		<div class="form-group col-sm-12">
-		<label><input type="checkbox" id="recurring"> Make my donation recur on a weekly basis until the election!</input></label>
+		<label><input type="checkbox" id="recurring_input"> Donate this amount every month</input></label>
 		</div>
-
-
+		<input type="hidden" id="recurrence_period_input" value="monthly">
 	        <div class="form-group col-sm-6">
 {% if page.only-bitcoin %}
 	          <button id="bitcoinButton" style="width:100%;" class="btn ammount-button">
