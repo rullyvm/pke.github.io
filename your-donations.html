@@ -21,10 +21,10 @@ Our Donors
 {% endcapture %}
 
 {% capture content %}
-
+<div class="container">
 <div class="col-md-12">
-  <h2>62,769 donations for over $8,667,062 from across the nation. <small>(from May 1 to Oct 10)</small></h2>
-  <h4>You can find our <a href="http://blog.mayday.us/post/100017462900/data-release-6">recent data release here</a> or read more about our <a href="http://blog.mayday.us/post/98259998165/our-fundraising-so-far" target="_blank">fundraising history and transparency pledge here.</a></h4>
+  <h2>67,547 donations for over $10,947,947 from across the nation.</h2>
+  <h4>This is our final data release from the 2014 election cycle, from our launch on May 1st through Election Day on November 4th. You can find our <a href="http://blog.mayday.us/post/100017462900/data-release-6">recent data release here</a>, and we'll be releasing our FEC reports in early December. You can read more about our <a href="http://blog.mayday.us/post/98259998165/our-fundraising-so-far" target="_blank">fundraising history and transparency pledge here.</a></h4>
   <div class='map-container'>
     <div id='map'><span class="loading">Loading donation database, please wait...</span></div>
     <div id='circle-legend'>
@@ -69,21 +69,6 @@ Our Donors
     </div>
   </div>
   <div class="col-md-6 targetedWrapper">
-    <style type="text/css" media="screen">
-      .targetedWrapper{margin-top:20px;}
-      .targetedBreakout, .targetedBreakout table{width:100%;}
-        .targetedBreakout {max-width:300pxfloat:none}
-        .targetedBreakout h2{}
-        .targetedBreakout{border:2px solid #ddd}
-          .targetedBreakout thead{margin-bottom:6px}
-          .targetedBreakout th{background:#eee;text-shadow:1px 1px #fff;font-size:16px;line-height:30px}
-          .targetedBreakout th:first-child {background:none;}
-          .targetedBreakout tbody tr{border-top:1px solid #ddd;}
-          /*.targetedBreakout tr:nth-child(even){background:#f1f1f1}*/
-            /*.targetedBreakout td:nth-child(2), .targetedBreakout th:nth-child(2) {text-align:center}*/
-            .targetedBreakout td:first-child{padding-left:8px;background:#eee;}
-            .targetedBreakout td, .targetedBreakout th{padding:2px 4px;white-space:nowrap;text-align:right;}
-    </style>
     <h3>Donation Breakdown by Targeting</h3>
     <table class="targetedBreakout">
       <thead>
@@ -96,25 +81,27 @@ Our Donors
       <tbody>
         <tr>
           <td>Democrats Only</td>
-          <td>$956,469</td>
-          <td>$30,000</td>
+          <td>$938,219</td>
+          <td>$60,164</td>
         </tr>
         <tr>
           <td>Republicans Only</td>
-          <td>$27,878</td>
+          <td>$27,998</td>
           <td>$0</td>
         </tr>
         <tr>
           <td>Whatever Helps</td>
-          <td>$3,686,050</td>
-          <td>$3,966,665</td>
+          <td>$3,795,726</td>
+          <td>$6,125,840</td>
         </tr>
       </tbody>
     </table>
   </div>
 </div>
 
+</div>
 <style>
+.map-container{margin-bottom:15px;}
 #map .loading{display:block;text-align:center;font-size:1.6em;line-height:200px;color:#313945}
 #map, #map .loading{font-family:'Merriweather', Georgia, 'Times New Roman', Times, serif}
   .subpage-content h3{line-height:normal}
@@ -153,6 +140,20 @@ Our Donors
   .bar{cursor:pointer;fill:#8FAEC3;-webkit-transition:all 200ms linear;-moz-transition:all 200ms linear;-o-transition:all 200ms linear;transition:all 200ms linear}
   .bar:hover,
   .bar.hover{fill:#537288}
+
+.targetedWrapper{margin-top:20px;}
+  .targetedBreakout, .targetedBreakout table{width:100%;}
+    .targetedBreakout {max-width:300pxfloat:none}
+    .targetedBreakout h2{}
+    .targetedBreakout{border:2px solid #ddd}
+      .targetedBreakout thead{margin-bottom:6px}
+      .targetedBreakout th{background:#eee;text-shadow:1px 1px #fff;font-size:16px;line-height:30px}
+      .targetedBreakout th:first-child {background:none;}
+      .targetedBreakout tbody tr{border-top:1px solid #ddd;}
+      /*.targetedBreakout tr:nth-child(even){background:#f1f1f1}*/
+        /*.targetedBreakout td:nth-child(2), .targetedBreakout th:nth-child(2) {text-align:center}*/
+        .targetedBreakout td:first-child{padding-left:8px;background:#eee;}
+        .targetedBreakout td, .targetedBreakout th{padding:2px 4px;white-space:nowrap;text-align:right;}
 </style>
 <script>L_PREFER_CANVAS = true;</script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/d3/3.4.9/d3.min.js"></script>
