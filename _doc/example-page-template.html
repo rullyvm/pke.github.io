@@ -1,0 +1,95 @@
+---
+layout: default
+cssid: contact-us
+hideSidebar: true #hideSidebar should be true on any call to action page to increase conversions
+title: Contact Us - We're eager to hear from you - MAYDAY.US
+og_title: Optional SEO page title
+og_description: 'Optional description.  Quoting here is optional but certain key characters can cause errors, i.e. "#" or ":"'
+og_image: Share image url
+twitter_description: 'Optional Twitter description'
+twitter_image: 'Optional Twitter share image.'
+someHash:
+  - type: quoteAndImage
+    name: Jerry
+    body: This is written text. With a filter, it could be *markdown*.
+  - type: imageOnly
+    name: A Atkins
+    body: A jekyll filter parses _this_ as markdown.
+---
+
+{% capture meta_content %}
+<!--
+  If you want complete control of your meta content, write it in a meta_content block.
+  This will stop the default template's meta tags from being included
+-->
+<meta content="MAYDAY.US #Reformin30 Video Contest" itemprop="name" />
+<meta property="fb:app_id" value="515720611858523" />
+<meta content="https://mayday.us/campaigns/maydayin30/" property="og:url" />
+<meta content="https://mayday.us/campaigns/maydayin30/" name="twitter:url" />
+<meta content="https://mayday.us/images/ProfilePic.jpg" property="og:image" />
+<meta content="https://mayday.us/images/ProfilePic.jpg" name="twitter:image" />
+<meta content="MAYDAY.US #Reformin30 Video Contest" property="og:title" />
+<meta content="MAYDAY.US #Reformin30 Video Contest" name="twitter:title" />
+<meta content="I just entered the @MAYDAYUS #Reformin30 video contest! Vote here: http://bit.ly/1r2MM44" property="og:description" />
+<meta content="I just entered the @MAYDAYUS #Reformin30 video contest! Vote here: http://bit.ly/1r2MM44" name="twitter:description" />
+<meta content="@mayday" name="twitter:site" />
+<meta content="summary_large_image" name="twitter:card" />
+<meta content="https://mayday.us/images/ProfilePic.jpg" name="twitter:image:src" />
+{% endcapture %}
+
+{% capture content %}
+
+## Page title
+<style>
+  /*
+    Since most new pages are "single use" campaings that get "discarded" after a campign has run
+    it's course of a few days. Include any page specific CSS on the page. Only add css to common.css
+    when the page will have a longer life span.
+
+    Note: commmon.css isn't in the best shape as it is a derivative of several iterations of this site.
+  */
+</style>
+
+All pages use mark down, so this is just markdown.  HTML can also be used.
+
+Here is a simple hash loop example.
+
+{% assign index = 0 %}
+{% for supporter in page.supporters %}
+  <div class="item {{supporter.type }} {% if index == 0 %}active{% endif %}">
+    <div class="container">
+      {{ supporter.type }}
+      {{ supporter.name }}
+      {{ supporter.body | markdownify }}
+    </div>
+  </div>
+  {% assign index = index+1 %}
+{% endfor %}
+
+<div class="row">
+  <div class="col-md-6">
+    If you need multiple columns, use bootstrap's classes like I'm doing here.
+  </div>
+  <div class="col-md-6">
+    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+    tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+    quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+    consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+    cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+    proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+  </div>
+</div>
+
+
+</div>
+{% endcapture %}
+
+{% capture footer_content %}
+<script>
+  // put any scripts or other late loading code here.  Onl one footer_content block can exist per page.
+</script>
+{% endcapture %}
+
+<!-- Almost the entire layout is loaded in a _includes so that page variables are available. -->
+{% include subpage.html %}
+
