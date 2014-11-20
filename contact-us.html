@@ -7,17 +7,6 @@ hideSidebar: false
 ---
 
 
-{% capture subhead %}
-
-A citizen-funded super PAC, to end all super PACs.
-
-{% endcapture %}
-
-{% capture pageid %}
-
-Contact-us
-{% endcapture %}
-
 {% capture content %}
 <h2>Contact Us</h2>
 
@@ -52,9 +41,10 @@ Contact-us
   <h2>Thanks for your message.</h2>
   You should receive an email from us soon!
 </div>
+{% endcapture %}
+
+{% capture footer_content %}
 <script>
-
-
 $(document).ready(function(){
   $('#contact-us-form').validate({
     rules: {

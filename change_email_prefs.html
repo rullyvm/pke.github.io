@@ -18,11 +18,11 @@ Change Email Preferences
 
 {% capture content %}
 
-<!-- 
+<!--
 User's email address: id="user_email_address"
 Form Name: name="changeEmailPrefs"
 action: changeEmailPrefs();
-Field: "fundraiseok" - values are Yes and No. 
+Field: "fundraiseok" - values are Yes and No.
 -->
 
 <h1>Change e-mail preferences</h1>
@@ -32,61 +32,27 @@ Field: "fundraiseok" - values are Yes and No.
 <p>Your E-Mail Address:&nbsp;<span id="user_email_address" style="text-weight:bold;">Email</span></p>
 
 <form id="changeEmailPrefs" action="javascript:;" method="get">
-<input style="vertical-align: baseline;" type="radio" name="fundraiseok" value="Yes"><label><strong>&nbsp;&nbsp;&nbsp;Send Me All E-mails Including Fundraising E-mails</strong></label><br /> 
+<input style="vertical-align: baseline;" type="radio" name="fundraiseok" value="Yes"><label><strong>&nbsp;&nbsp;&nbsp;Send Me All E-mails Including Fundraising E-mails</strong></label><br />
 I want to receive them and help out some more as we hit crucial milestones in our campaign leading up to Election Day.&nbsp;</span><br><BR>
 <input style="vertical-align: baseline;" type="radio" name="fundraiseok" value="No"><label><strong>&nbsp;&nbsp;&nbsp;Do Not Send Me Fundraising E-mails</strong></label><br />
 I&#39;m just interested in how I can help out non-financially at this stage, as well as getting news and updates from the campaign. If I need to donate, I&#39;m pretty sure I&#39;ll remember the &quot;Mayday.US&quot; address, after all.&nbsp;</span>
 <BR><BR>
 <input type="submit" value="Submit">
 </form>
-
-
 {% endcapture %}
 
-{% include subpage_nomarkdown.html %}
-
+{% capture footer_content %}
 <script>
-
-function post_to_url(path, params, method) {
-  method = method || "POST"; // Set method to post by default, if not specified.
-
-  // The rest of this code assumes you are not using a library.
-  // It can be made less wordy if you use one.
-  var form = document.createElement("form");
-  form.setAttribute("method", method);
-  form.setAttribute("action", path);
-
-  for (var key in params) {
-    if (params.hasOwnProperty(key)) {
-      var hiddenField = document.createElement("input");
-      hiddenField.setAttribute("type", "hidden");
-      hiddenField.setAttribute("name", key);
-      hiddenField.setAttribute("value", params[key]);
-      form.appendChild(hiddenField);
-    }
-  }
-
-  document.body.appendChild(form);
-  form.submit();
-}
-
-function getParameterByName(name) {
-    name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
-    var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
-        results = regex.exec(location.search);
-    return results == null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
-}
-
 function changeEmailPrefs() {
   var preference = $("input:radio[name=fundraiseok]:checked").val() || null;
   if (preference) {
     var params = {
-      'email':userEmail, 
-      'MERGE13':preference,          
+      'email':userEmail,
+      'MERGE13':preference,
       'redirect':'https://mayday.us/change_email_prefs_thanks/',
       'source':'changePrefs'
     };
-    post_to_url("https://pledge.mayday.us/r/subscribe", params);      
+    post_to_url("https://pledge.mayday.us/r/subscribe", params);
   } else {
     alert('Please select a preference.');
   }
@@ -98,10 +64,12 @@ $(document).ready( function() {
   userEmail = getParameterByName('email') || null;
   $('#changeEmailPrefs').submit(changeEmailPrefs);
   if (userEmail) {
-    $('#user_email_address').text(userEmail);    
+    $('#user_email_address').text(userEmail);
   } else {
     alert('No email provided, looks like you followed a bad link and this form will not work');
   }
 });
-
 </script>
+{% endcapture %}
+
+{% include subpage_nomarkdown.html %}

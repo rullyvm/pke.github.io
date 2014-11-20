@@ -12,29 +12,31 @@ og_description: 'Find your polling place and #vote4reform - MAYDAY.US'
 {% capture pageid %} vote-for-reform {% endcapture %}
 
 {% capture content %}
-<script type="text/javascript" src="https://voter-info-tool.appspot.com/js/loader.js"></script>
-<script>
-$(document).ready(function(){
-  var cookie = $.cookie();
-  if(cookie.hasOwnProperty('address')){
-    full_address = [cookie.address]
-    if(cookie.hasOwnProperty('city')){full_address.push(cookie.city) };
-    if(cookie.hasOwnProperty('state')){full_address.push(cookie.state) };
-    if(cookie.hasOwnProperty('zip')){full_address.push(cookie.zip) };
-    address_string = full_address.join(' ');
-    vit.load({election_id:4100, address: address_string});
-  }else{
-    vit.load({election_id:4100});
-  }
-});
-</script>
-
-<script type="text/javascript" src="https://voter-info-tool.appspot.com/js/loader.js"></script>
 <div id="_vit"></div>
 
 
 <h3 style="margin-top:10px">Don't know who to vote for?  <a href="https://mayday.us/campaigns/vote-for-reform/">Look up your local reformers</a>.</h3>
 {% endcapture %}
+
+{% capture footer_content %}
+  <script type="text/javascript" src="https://voter-info-tool.appspot.com/js/loader.js"></script>
+  <script>
+  $(document).ready(function(){
+    var cookie = $.cookie();
+    if(cookie.hasOwnProperty('address')){
+      full_address = [cookie.address]
+      if(cookie.hasOwnProperty('city')){full_address.push(cookie.city) };
+      if(cookie.hasOwnProperty('state')){full_address.push(cookie.state) };
+      if(cookie.hasOwnProperty('zip')){full_address.push(cookie.zip) };
+      address_string = full_address.join(' ');
+      vit.load({election_id:4100, address: address_string});
+    }else{
+      vit.load({election_id:4100});
+    }
+  });
+  </script>
+{% endcapture %}
+
 
 {% include subpage.html %}
 

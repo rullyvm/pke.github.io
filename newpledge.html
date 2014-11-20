@@ -7,19 +7,17 @@ disable-pledge-sidebar: true
 hidePrimaryNav: true
 ---
 
-       <div class="jumbotron">
-         <div id="pledgeBox">
-            <div class="info">
-              <h2>Help End Big Money Politics</h2>
-              <p>Help us reduce the influence of money in politics and elect a Congress committed to fundamental reform by 2016</p>
-            </div>
-            {% include pledgeform-newpledge.html %}
-         </div>
-         <div id="mainrules" class="well rules">
-            {% include pledge-rules.html %}
-         </div>
-
-       </div>
+<div class="jumbotron">
+  <div id="pledgeBox">
+    <div class="info">
+      <h2>Help End Big Money Politics</h2>
+      <p>Help us reduce the influence of money in politics and elect a Congress committed to fundamental reform by 2016</p>
+    </div>
+    {% include pledgeform-newpledge.html %}
+  </div>
+  <div id="mainrules" class="well rules">
+    {% include pledge-rules.html %}
+  </div>
+</div>
 
 {% include footer.html %}
-

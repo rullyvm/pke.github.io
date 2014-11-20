@@ -7,26 +7,16 @@ hideSidebar: true
 og_title: Getting to know the MAYDAY.US Community
 ---
 
-
-{% capture subhead %}
-
-A citizen-funded super PAC, to end all super PACs.
-
-{% endcapture %}
-
-{% capture pageid %}
-
-Getting to know the Mayday Community
-
-{% endcapture %}
-
 {% capture content %}
-<script type='text/javascript' src='/js/subscribe.js'></script>
-<script type='text/javascript'>
-    $(document).ready(SendEmail);
-</script>
 <h2>Thanks for joining the MAYDAY Movement!</h2>
 <div id="result"> Thanks for helping us end corruption on Washington. We'll keep you in the loop about our latest campaigns and ways that you can help the movement to decrease money's corrupting influence on politics. Check out Lessig's new <a href="https://mayday.us/campaigns/20141025-time-inc-lessig-video/" >inspirational video!</a></div>
+{% endcapture %}
+
+{% capture footer_content %}
+  <script type='text/javascript' src='/js/subscribe.js'></script>
+  <script type='text/javascript'>
+      $(document).ready(SendEmail);
+  </script>
 {% endcapture %}
 
 {% include subpage.html %}
