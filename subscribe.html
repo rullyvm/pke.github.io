@@ -4,26 +4,118 @@ title: MAYDAY.US - Subscribe
 omit_title_suffix: true
 cssid: subscribe
 hideSidebar: true
-
 ---
 
-
-{% capture subhead %}
-
-Thanks for coming to the rescue! 
-
-{% endcapture %}
-
-{% capture pageid %}
-
-Subscribe
-
-{% endcapture %}
-
 {% capture content %}
+  <div id="content" class="row">
+    <div class="row">
+      <h2 style="text-align:center;">Thanks for coming to the rescue!</h2>
+    </div>
+    <div class="row">
+      <form name="subscribeForm" action='https://pledge.mayday.us/r/subscribe' onsubmit='return validateForm();' method='post'>
+        <input type="hidden" name="redirect" value="http://mayday.us/newpledge-with-thanks/" />
 
-{% include subscribe.html %}
+        <div class="row">
+          <div class="input-group input-group-lg">
+<!--             <div class="social" id="sidesocial">
+                      <P>Let's win our democracy back. Can you share with your friends and ask them to join the #MaydayMovement?</P>
+              <div class="twitter"><a href="https://twitter.com/home?status=Money%20has%20corrupted%20our%20democracy.%20Can%20we%20fix%20it?%20Act%20now,%20join%20%23MAYDAYUS%20--%20let's%20try%20something%20new:%20https%3A%2F%2Fmayday.us%3F" title="Share on Twitter" target="_blank"><span>Share on Twitter</span></a></div>
+              <div class="facebook"><a href="https://www.facebook.com/sharer/sharer.php?u=https://mayday.us" title="Share on Facebook" target="_blank"><span>Share on Facebook</span></a></div>
+              <div class="email">
+                  <a href='mailto:?to=&subject=A%20Mayday%20call%20for%20our%20democracy&body=The%20Mayday%20Political%20Action%20Committee%20has%20kick-started%20the%20money%20for%20the%20first%20essential%20step%20towards%20a%20Congress%20committed%20to%20fundamental%20reform%20by%202016.%20But%20we%20still%20need%20your%20help%20to%20spread%20the%20word.%20Will%20you%20join%20me%20by%20going%20to%20https%3A%2F%2Fmayday.us%3F'
+                  target="_blank" title="Share with Email"><span>Share with Email</span></a>
+              </div>
+            </div> -->
+            <label>Email (required)</label>
+            <input id='email_input' type="email" required name="email" class="form-control">
+          </div>
+        </div>
 
+        <div class="row">
+           <div class="input-group input-group-lg">
+         <label>First Name</label>
+            <input type="text" name="first_name" class="form-control">
+          </div>
+        </div>
+
+        <div class="row">
+           <div class="input-group input-group-lg">
+         <label>Last Name</label>
+            <input type="text" name="last_name" class="form-control">
+          </div>
+        </div>
+
+        <div class="row">
+           <div class="input-group input-group-lg">
+         <label>Zip Code</label>
+            <input type="text" name="zipcode" class="form-control">
+          </div>
+        </div>
+
+        <div class="row">
+           <div class="input-group input-group-lg">
+         <label class="checkbox"><input type="checkbox" name="volunteer" class="form-control" onclick="document.getElementById('skills_section').style.display = 'block';"> Do you want to volunteer?</label>
+          </div>
+        </div>
+
+        <div id="skills_section" class="row" style="display:none">
+           <div class="input-group input-group-lg">
+         <label><input type="text" name="skills" class="form-control" maxlength="254"> Do you have any specific skills that can help us with organizing? (Both technical and non-technical!)</label>
+          </div>
+        </div>
+
+        <div class="row">
+           <div class="input-group input-group-lg">
+         <label class="checkbox" id="rootstrikersCheckbox"><input type="checkbox" name="rootstrikers" class="form-control" checked> Receive updates from Rootstrikers, a MAYDAY.us ally working to remove the root problem of corruption from American government.</label>
+          </div>
+        </div>
+
+        <input type="hidden" name="source" id="sourceElement" value="{% if page.mailchimpSource %}{{ page.mailchimpSource }}{% else %}subscribe{% endif %}"/>
+
+        <div ng-show="! ctrl.spinning" class="row">
+           <span class="input-group-btn">
+              <button id="submitButton" type="submit" class="btn btn-primary">Subscribe</button>
+            </span>
+        </div>
+
+        <div ng-show="ctrl.spinning" class="row">
+          <div id="spinButton" class="spacing" style="position:relative;"></div>
+        </div>
+
+        <div ng-show="ctrl.error" class="edd_errors row">
+          <p id="error"></p>
+        </div>
+
+      </form>
+
+    </div>
+</div>
 {% endcapture %}
+
+{% capture footer_content %}
+<script>
+var validateForm = function() {
+  var re = /\S+@\S+\.\S+/;
+  if (! re.test(document.subscribeForm.email.value))
+  {
+    document.getElementById('error').innerHTML = 'Please enter a valid email address.';
+    return false;
+  }
+  return true;
+};
+$( document ).ready( function() {
+  var email = getParameterByName('email');
+  var source_val = getParameterByName('source');
+  var email_input = document.getElementById("email_input");
+  var source_input = document.getElementById("sourceElement");
+  email_input.value=email;
+  source_val = source_val || null;
+  if (source_val) {
+    source_input.value = source_val;
+  }
+});
+</script>
+{% endcapture %}
+
 
 {% include subpage.html %}

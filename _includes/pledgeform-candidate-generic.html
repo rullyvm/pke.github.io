@@ -1,12 +1,9 @@
+{% capture footer_content %}
+
 <script src="//fgnass.github.io/spin.js/spin.min.js"></script>
 <script src="https://code.jquery.com/jquery-migrate-1.2.1.js"></script>
 <script src="https://checkout.stripe.com/checkout.js"></script>
 <script src="https:{% if page.pledge_url %}{{ page.pledge_url }}{% else %}//pledge.mayday.us{% endif %}/static/pledge.js"></script>
-{% if page.disable-pledge-sidebar == null %}
-<link rel="stylesheet" href="{{ site.baseurl }}/css/landing-newpledge.css?3" />
-{% else %}
-<link rel="stylesheet" href="{{ site.baseurl }}/css/newpledge.css?3" />
-{% endif %}
 
 <script>
 /*
@@ -78,7 +75,13 @@ limitations under the License.
      }
     });
   </script>
+{% endcapture %}
 
+{% if page.disable-pledge-sidebar == null %}
+<link rel="stylesheet" href="{{ site.baseurl }}/css/landing-newpledge.css?3" />
+{% else %}
+<link rel="stylesheet" href="{{ site.baseurl }}/css/newpledge.css?3" />
+{% endif %}
 
 {% if page.disable-pledge-sidebar == null %}
 <div id="pledgecol-sidebar" >
