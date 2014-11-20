@@ -178,7 +178,7 @@ body > footer {color: #999;background-color:black;}
 
 .subpage-content a{color:#003366;}
 .subpage-content a:hover{text-decoration:underline;color:#003366;}
-.subpage-content {color:black;font-size:16px;padding:30px 30px 50px;line-height: 1.61em;}
+.subpage-content {color:black;font-size:16px;padding:30px 0 50px;line-height: 1.61em;}
 
 .subpage-content h1,
 .subpage-content h2,
@@ -281,7 +281,6 @@ div.error{color: #cc3333; margin-bottom: 10px;}
 
 .subscribeButton {margin-top: 20px;font-size: 60px;font-weight: 700;border-radius: 2px;}
 .videoEmbed {max-width:640px;max-height:360px;}
-
 
 #rules {padding:10px;}
 

@@ -26,13 +26,13 @@ function numberWithCommas(num) {
 
 function updateTotals() {
   jQuery.getJSON('https://pledge.mayday.us/r/total', function(data) {
-    totalRaised = data.totalCents/100 + (1408240.42+1775000);//+offline contributions
+    totalRaised = data.totalCents/100 + 3521150;//+offline contributions
     totalRaised = Math.round(totalRaised);
     $('#total-donated').text('$' + numberWithCommas(totalRaised));
   });
 
   jQuery.getJSON('https://pledge.mayday.us/r/num_pledges', function(data) {
-    $('#total-donors').text(numberWithCommas(data.count+4917+6));//+offline contributions
+    $('#total-donors').text(numberWithCommas(data.count+3580));//+offline contributions
   });
 }
 
@@ -77,7 +77,7 @@ $.fn.carouselHeights = function() {
     });
     tallest = Math.max.apply(null, heights);
     items.each(function() {
-      $(this).css('min-height',tallest + 'px');
+      $(this).css('height',tallest + 'px');
     });
   };
 
