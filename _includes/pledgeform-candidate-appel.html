@@ -1,9 +1,13 @@
-{% capture footer_content %}
 <script src="//fgnass.github.io/spin.js/spin.min.js"></script>
 <script src="https://code.jquery.com/jquery-migrate-1.2.1.js"></script>
 <script src="https://checkout.stripe.com/checkout.js"></script>
 <script src="https:{% if page.pledge_url %}{{ page.pledge_url }}{% else %}//pledge.mayday.us{% endif %}/static/pledge.js"></script>
-
+{% if page.disable-pledge-sidebar == null %}
+<link rel="stylesheet" href="{{ site.baseurl }}/css/landing-newpledge.css?4" />
+{% else %}
+<link rel="stylesheet" href="{{ site.baseurl }}/css/newpledge.css?6" />
+{% endif %}
+  
 <script>
 /*
 
@@ -71,31 +75,25 @@ limitations under the License.
        } else {
          console.log('Firefox version was OK: ' + ffVersion);
        }
-     }
+     } 
     });
   </script>
-{% endcapture %}
-{% if page.disable-pledge-sidebar == null %}
-<link rel="stylesheet" href="{{ site.baseurl }}/css/landing-newpledge.css?3" />
-{% else %}
-<link rel="stylesheet" href="{{ site.baseurl }}/css/newpledge.css?3" />
-{% endif %}
 
 
 {% if page.disable-pledge-sidebar == null %}
 <div id="pledgecol-sidebar" >
   <div class="pledgepage panel panel-default" >
 {% endif %}
-
+  
   	<div class="stepContainer">
 		<h3>Donate In Two Minutes Or Less</h3>
 		<ul class="steps">
 			<li id="step-1" class="step active">Amount<span>1</span></li>
 			<li id="step-2" class="step">Info<span>2</span></li>
-			<li id="step-3" class="step">Payment<span>3</span></li>
+			<li id="step-3" class="step">Payment<span>3</span></li>		
 		</ul>
 	</div>
-
+	
 	<div class="step-1-container">
 		<div class="ammount-button" onclick="step2(10);">$10</div>
 		<div class="ammount-button" onclick="step2(25);">$25</div>
@@ -116,7 +114,7 @@ limitations under the License.
 		<div style="margin:10px 0px;"><strong>Or:</strong><a href="https://mayday.us/bitcoin/"><img width="150px" src="/images/donate-with-bitcoin.png"></a></div>
 {% endif %}
 	</div>
-
+	
 	<div class="step-2-container">
 		  <form id="pledgeForm" role="form" method="POST" onsubmit="step3();" action="javascript:;">
 
@@ -216,7 +214,7 @@ limitations under the License.
 	              <option>No robocalls</option>
 	              <option>State-of-the-art digital canvassing and field tools</option>
 	              <option>No negative ads</option>
-	              <option>Whatever helps us win</option>
+	              <option>Whatever helps us win</option>            
 	            </select>
 	          </div>
 	        {% endif %}
@@ -233,9 +231,9 @@ limitations under the License.
 	        </div>
 	        <div id="formError" class="alert alert-danger" style="display:none">
 	        </div>
-
-
-
+	
+	
+	      
 	        <div class="form-group col-sm-6">
 {% if page.only-bitcoin %}
 	          <button id="bitcoinButton" style="width:100%;" class="btn ammount-button">
@@ -253,9 +251,9 @@ limitations under the License.
 	        </div>
 {% endif %}
       </form>
-
+			
 	</div>
-
+  
 {% if page.disable-pledge-sidebar == null %}
   </div> <!-- end .panel-default -->
 </div>

@@ -155,401 +155,403 @@ Our Donors
         .targetedBreakout td:first-child{padding-left:8px;background:#eee;}
         .targetedBreakout td, .targetedBreakout th{padding:2px 4px;white-space:nowrap;text-align:right;}
 </style>
-{% endcapture %}
-
-{% capture footer_content %}
 <script>L_PREFER_CANVAS = true;</script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/d3/3.4.9/d3.min.js"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/underscore.js/1.6.0/underscore.js"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/numeral.js/1.4.5/numeral.min.js"></script>
 <link href="//cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.3/leaflet.css" rel="stylesheet" />
 <script src='//cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.3/leaflet.js'></script>
+<script src="/js/v8.js?6"></script>
 <script>
-  // ----------------------
-  // set up basemap
-  // ----------------------
-  var map = L.map('map',{
-    minZoom:4,
-    maxZoom:10
-  }).setView([40,-98],4);
+// ----------------------
+// set up basemap
+// ----------------------
+var map = L.map('map',{
+  minZoom:4,
+  maxZoom:10
+}).setView([40,-98],4);
 
-  L.tileLayer('//{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-    attribution: 'Map tiles and data by OpenStreetMap, under CC BY SA.'
-  }).addTo(map);
+L.tileLayer('//{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+  attribution: 'Map tiles and data by OpenStreetMap, under CC BY SA.'
+}).addTo(map);
 
-  function assignRadius(value){
-    if (value >=0 && value <= 5){
-      return 2
-    } else if (value > 5 && value <=10) {
-      return 5
-    } else if (value > 10 && value <= 50) {
-      return 8
-    } else if (value > 50 && value <= 100) {
-      return 11
-    } else if (value > 100 && value <= 200){
-      return value / 10
-    } else if (value > 200 && value <= 500) {
-      return value / 8
-    } else if (value > 500 && value <= 1000 ){
-      return value / 7
-    } else if (value > 1000) {
-      return 150
-    }
+function assignRadius(value){
+  if (value >=0 && value <= 5){
+    return 2
+  } else if (value > 5 && value <=10) {
+    return 5
+  } else if (value > 10 && value <= 50) {
+    return 8
+  } else if (value > 50 && value <= 100) {
+    return 11
+  } else if (value > 100 && value <= 200){
+    return value / 10
+  } else if (value > 200 && value <= 500) {
+    return value / 8
+  } else if (value > 500 && value <= 1000 ){
+    return value / 7
+  } else if (value > 1000) {
+    return 150
   }
+}
 
-  d3.csv('{{site.baseurl}}/data/pledges_for_map.csv',function(error,data){
+d3.csv('{{site.baseurl}}/data/pledges_for_map.csv',function(error,data){
 
-    // filter out invalid zipcode
-    var valid = data.filter(function(d){
-      return d.zip.length=== 5 && d.longitude.length != 0;
-    })
+  // filter out invalid zipcode
+  var valid = data.filter(function(d){
+    return d.zip.length=== 5 && d.longitude.length != 0;
+  })
 
-    var features = valid.map(function(d){
-      return {
-        'type':'Feature',
-        'geometry':{
-          'type':'Point',
-          'coordinates':[parseFloat(d.longitude),parseFloat(d.latitude)]
-        },
-        'properties':{
-          'zip':d.zip,
-          'count':parseInt(d.count),
-          'dollars':parseInt(d.dollars)
-        }
+  var features = valid.map(function(d){
+    return {
+      'type':'Feature',
+      'geometry':{
+        'type':'Point',
+        'coordinates':[parseFloat(d.longitude),parseFloat(d.latitude)]
+      },
+      'properties':{
+        'zip':d.zip,
+        'count':parseInt(d.count),
+        'dollars':parseInt(d.dollars)
       }
-    });
+    }
+  });
 
-    var circleStyle = {
-      color:'#000000',
-      fillColor:'#cc3333',
-      weight:0.25,
-      opacity:0.8,
-      fillOpacity:0.5
+  var circleStyle = {
+    color:'#000000',
+    fillColor:'#cc3333',
+    weight:0.25,
+    opacity:0.8,
+    fillOpacity:0.5
+  };
+
+  var featureLayer = L.geoJson(features,{
+    pointToLayer:function(feature,latlng){
+      var circle = new L.circleMarker(latlng, circleStyle);
+      circle.setRadius(assignRadius(feature.properties.count));
+      return circle
+    },
+    onEachFeature:function(feature,layer){
+      var popupContent = 'Zipcode ' + feature.properties.zip + ': </br>' +
+      '<b>' + feature.properties.count + '</b> Donations Totals <b>$' + feature.properties.dollars + '</b> Dollars';
+
+      layer.bindPopup(popupContent);
+    }
+  });
+
+  map.addLayer(featureLayer);
+
+});
+
+// ----------------------
+// set up graph
+// ----------------------
+function getKey(collection){
+  return _.chain(collection)
+    .pairs()
+    .sortBy(function(a){return parseInt(a[0]);})
+    .map(function(a){return a[0];})
+    .value();
+}
+
+function getValue(collection){
+  return _.chain(collection)
+    .pairs()
+    .sortBy(function(a){return parseInt(a[0]);})
+    .map(function(a){return a[1];})
+    .value()
+}
+
+d3.csv('{{site.baseurl}}/data/pledges.csv',function(error,data){
+
+  data.forEach(function(d) {
+    d.dollars = parseInt(d.dollars, 10);
+  });
+
+  // ----------------------
+  // format data for graph
+  // ----------------------
+
+  // Create kinda-log approximately-doubling histogram bins to capture the spread of different donation sizes
+  var binThresholds = [1, 11, 21, 41, 81, 151, 301, 501, 1001, 2001, 3001, 5001, 50001, 100001, 250001, 500001],
+      histogram = (d3.layout.histogram()
+                   // each donation is bucketed by the value of the donation
+                   .value(function(d) {return d.dollars; })
+                   .bins(binThresholds))(data);
+
+  // Parse the buckets: Calculate the different ways of measures buckets: sum, count
+  histogram.forEach(function(bucket, i) {
+    bucket.measures = {
+      nil: {
+        value: 0,
+        label: '',
+        byState: []
+      },
+      sum: {
+        value: d3.sum(bucket, function(d) {return d.dollars;})
+        // label: below
+      },
+      count: {
+        value: bucket.length
+        // label: below
+      }
     };
 
-    var featureLayer = L.geoJson(features,{
-      pointToLayer:function(feature,latlng){
-        var circle = new L.circleMarker(latlng, circleStyle);
-        circle.setRadius(assignRadius(feature.properties.count));
-        return circle
-      },
-      onEachFeature:function(feature,layer){
-        var popupContent = 'Zipcode ' + feature.properties.zip + ': </br>' +
-        '<b>' + feature.properties.count + '</b> Donations Totals <b>$' + feature.properties.dollars + '</b> Dollars';
+    bucket.measures.sum.label = numeral(bucket.measures.sum.value).format('$0,0');
+    bucket.measures.count.label = numeral(bucket.measures.count.value).format('0,0');
 
-        layer.bindPopup(popupContent);
+    bucket.label = numeral(bucket.x + bucket.dx - 1).format('$0,0');
+    bucket.rangeLabel = numeral(bucket.x).format('$0,0') + '-' +
+                        numeral(bucket.x + bucket.dx - 1).format('$0,0')
+
+    bucket.measures.sum.drilldownLabel = 'Total value: ' + bucket.measures.sum.label;
+    bucket.measures.count.drilldownLabel = bucket.measures.count.label + ' donations';
+  });
+
+  // subdivide each measure (sum, count) by US states associated with buckets' donations
+  // we're creating a schema: bucket.measures.<measure>.byState = [{state: {string}, label: {string}}, ...]
+  // (where each byState is sorted in desc order)
+  histogram.forEach(function(bucket) {
+    var statesIdx = {};
+    bucket.forEach(function(donation) {
+      if (!donation.state)
+        donation.state = 'n/a';
+
+      if (!statesIdx[donation.state]) {
+        statesIdx[donation.state] = {count: 0, sum: 0};
       }
+
+      statesIdx[donation.state].count++;
+      statesIdx[donation.state].sum += donation.dollars;
     });
 
-    map.addLayer(featureLayer);
+    var bucketByState = _.chain(_.keys(statesIdx))
+                        .map(function(state) {
+                          return {
+                            state: state,
+                            count: statesIdx[state].count,
+                            sum: statesIdx[state].sum
+                          };
+                        })
+                        .value();
 
+    bucket.measures.sum.byState = _.sortBy(bucketByState, function(stateSummary) {
+                                    return -stateSummary.sum;
+                                  })
+                                  .map(function(stateSummary) {
+                                    return {
+                                      state: stateSummary.state,
+                                      //value: stateSummary.sum,
+                                      label: numeral(stateSummary.sum).format('$0,0')
+                                    };
+                                  });
+
+    bucket.measures.count.byState = _.sortBy(bucketByState, function(stateSummary) {
+                                      return -stateSummary.count;
+                                    })
+                                    .map(function(stateSummary) {
+                                      return {
+                                        state: stateSummary.state,
+                                        //value: stateSummary.count,
+                                        label: numeral(stateSummary.count).format('0,0')
+                                      };
+                                    });
   });
 
   // ----------------------
   // set up graph
   // ----------------------
-  function getKey(collection){
-    return _.chain(collection)
-      .pairs()
-      .sortBy(function(a){return parseInt(a[0]);})
-      .map(function(a){return a[0];})
-      .value();
+  var margin = {right:163, left:70},
+    width = 500 - margin.left - margin.right,
+    barHeight = 22,
+    height = barHeight * histogram.length;
+
+  var svg = d3.select('.histogram > svg')
+    .attr('width',width + margin.left + margin.right)
+    .attr('height', height )
+  .append('g')
+    .attr('transform','translate(' + margin.left + ',0)');
+
+  // widths for each measure
+  var measureScales = {
+    nil: function(val) {return 0;},
+    sum:   d3.scale.linear()
+           .range([0, width])
+           .domain([0, d3.max(histogram, function(bin) { return bin.measures.sum.value; })]),
+    count: d3.scale.linear()
+           .range([0, width])
+           .domain([0, d3.max(histogram, function(bin) { return bin.measures.count.value; })])
   }
 
-  function getValue(collection){
-    return _.chain(collection)
-      .pairs()
-      .sortBy(function(a){return parseInt(a[0]);})
-      .map(function(a){return a[1];})
-      .value()
+  // How many bars?
+  var y = d3.scale.ordinal()
+    .rangeRoundBands([0, height], .1)
+    .domain(histogram.map(function(bin, i) {return i;}));
+
+  // bind data
+  var binGs = svg.selectAll('.bar')
+                .data(histogram)
+              .enter().append('g')
+                .attr('class','barGroup')
+                .attr('transform', function(d, i) { return 'translate(0,' + y(i) + ')'; });
+
+
+  // Render bin and text labels el's (note: rendering with nil/0-state... changeMeasure() sets the actual sizes)
+  var currentMeasure = 'nil';
+
+  // bin labels
+  binGs.append('text')
+    .attr('class','binLabel')
+    .attr('x', '-70')
+    .attr('y', y.rangeBand()-8)
+    .attr('dy', '.35em')
+    .text(function(bucket) {
+        return bucket.label;
+    })
+    .on('click',function(d){
+      clearSelection();
+
+      d3.select(this).classed({'hover':true});
+      d3.select(this.parentNode.childNodes[0]).classed({'hover':true}); // rect
+
+      updateTable(d);
+    });
+
+  // generate bars
+  binGs.append('rect')
+    .attr('class','bar')
+    .attr('width', 2) // 2 to give small visible width
+    .attr('height', y.rangeBand())
+    .on('click',function(d){
+      clearSelection();
+
+      d3.select(this).classed({'hover':true,'clicked':true});
+      d3.select(this.parentNode.childNodes[1]).classed({'hover':true}); // text left
+
+      updateTable(d);
+    });
+
+  // bin measure labels
+  binGs.append('text')
+    .attr('class','binValueLabel')
+    .attr('x', 0)
+    .attr('y',y.rangeBand()-8)
+    .attr('dy','.35em')
+    .text('');
+
+  $('.histogram.loading').hide();
+
+  // ----------------------
+  // events
+  // ----------------------
+
+  /**
+   * Change (and animate) the histogram to show a different measure of the bins
+   * @param {'sum' | 'count' | 'nil'} m Which measure to show
+   */
+  window.changeMeasure = function changeMeasure(m) {
+    if (currentMeasure === m)
+      return;
+    else
+      currentMeasure = m;
+
+    // update the drilldown table
+    updateTable();
+
+    // define common transition
+    d3.transition()
+      .duration(750)
+
+    // apply transition to bars
+    .each(function() {
+      binGs.selectAll('rect').transition()
+      .attr('width', function(bin){return measureScales[m](bin.measures[m].value)+2;}); // plus 2 to give small counts a visible width
+    })
+
+    // apply transition to text labels
+    .each(function() {
+      binGs.selectAll('text.binValueLabel')
+        .style('opacity', 0)
+      .transition()
+        .style('opacity', 1)
+        .attr('x', function(bin) { return measureScales[m](bin.measures[m].value) + 10; })
+        .text(function(bin) { return bin.measures[m].label; })
+    });
+  };
+
+  function clearSelection(){
+    //d3.select('.states').remove();
+    d3.selectAll('rect').classed({'hover':false});
+    d3.selectAll('text').classed({'hover':false});
+  };
+
+  var lastBin;
+  function updateTable(binData){
+
+    if (binData && binData !== lastBin)
+      lastBin = binData;
+    else if (!binData)
+      binData = lastBin;
+    // else, we may be updating measure, re-run anyways.
+
+    if (!binData)
+      return; // no bin has been selected yet
+
+    d3.select('#states-drilldown').style('display', 'table');
+
+    var m = currentMeasure;
+
+    $('#binLabel').html(binData.rangeLabel);
+    $('#binMeasureLabel').html(binData.measures[m].drilldownLabel);
+
+    // clear out previous rows
+    d3.select('#states-drilldown tbody').selectAll('tr').remove();
+
+    //make new rows
+    var rows = d3.select('#states-drilldown tbody').selectAll('tr')
+                 .data(binData.measures[m].byState)
+               .enter().append('tr');
+
+    rows.append('td')
+    .html(function(d) { return d.state; });
+
+    rows.append('td')
+    .html(function(d) { return d.label; });
   }
 
-  d3.csv('{{site.baseurl}}/data/pledges.csv',function(error,data){
 
-    data.forEach(function(d) {
-      d.dollars = parseInt(d.dollars, 10);
-    });
+  // create scrollspy the starts the histogram when it first comes into view
+  var triggerPageY = $('div.histogram > svg').position().top + 200;
+  function scrollspy() {
+    if (window.pageYOffset + $(window).height() < triggerPageY)
+      return;
 
-    // ----------------------
-    // format data for graph
-    // ----------------------
+    setTimeout(function() {
+      $('.toggle.measure-count').trigger('click');
+    }, 250);
+    $(window).off('scroll', scrollspy);
+  };
 
-    // Create kinda-log approximately-doubling histogram bins to capture the spread of different donation sizes
-    var binThresholds = [1, 11, 21, 41, 81, 151, 301, 501, 1001, 2001, 3001, 5001, 50001, 100001, 250001, 500001],
-        histogram = (d3.layout.histogram()
-                     // each donation is bucketed by the value of the donation
-                     .value(function(d) {return d.dollars; })
-                     .bins(binThresholds))(data);
+  $(window).on('scroll', scrollspy);
+  scrollspy(); // try it once incase user already here
 
-    // Parse the buckets: Calculate the different ways of measures buckets: sum, count
-    histogram.forEach(function(bucket, i) {
-      bucket.measures = {
-        nil: {
-          value: 0,
-          label: '',
-          byState: []
-        },
-        sum: {
-          value: d3.sum(bucket, function(d) {return d.dollars;})
-          // label: below
-        },
-        count: {
-          value: bucket.length
-          // label: below
-        }
-      };
+});
 
-      bucket.measures.sum.label = numeral(bucket.measures.sum.value).format('$0,0');
-      bucket.measures.count.label = numeral(bucket.measures.count.value).format('0,0');
+// ----------------------
+// page interaction
+// ----------------------
+$('.toggle').on('click',function(e){
+  e.preventDefault();
+  $('.toggle').removeClass('active');
+  $(this).toggleClass('active');
 
-      bucket.label = numeral(bucket.x + bucket.dx - 1).format('$0,0');
-      bucket.rangeLabel = numeral(bucket.x).format('$0,0') + '-' +
-                          numeral(bucket.x + bucket.dx - 1).format('$0,0')
-
-      bucket.measures.sum.drilldownLabel = 'Total value: ' + bucket.measures.sum.label;
-      bucket.measures.count.drilldownLabel = bucket.measures.count.label + ' donations';
-    });
-
-    // subdivide each measure (sum, count) by US states associated with buckets' donations
-    // we're creating a schema: bucket.measures.<measure>.byState = [{state: {string}, label: {string}}, ...]
-    // (where each byState is sorted in desc order)
-    histogram.forEach(function(bucket) {
-      var statesIdx = {};
-      bucket.forEach(function(donation) {
-        if (!donation.state)
-          donation.state = 'n/a';
-
-        if (!statesIdx[donation.state]) {
-          statesIdx[donation.state] = {count: 0, sum: 0};
-        }
-
-        statesIdx[donation.state].count++;
-        statesIdx[donation.state].sum += donation.dollars;
-      });
-
-      var bucketByState = _.chain(_.keys(statesIdx))
-                          .map(function(state) {
-                            return {
-                              state: state,
-                              count: statesIdx[state].count,
-                              sum: statesIdx[state].sum
-                            };
-                          })
-                          .value();
-
-      bucket.measures.sum.byState = _.sortBy(bucketByState, function(stateSummary) {
-                                      return -stateSummary.sum;
-                                    })
-                                    .map(function(stateSummary) {
-                                      return {
-                                        state: stateSummary.state,
-                                        //value: stateSummary.sum,
-                                        label: numeral(stateSummary.sum).format('$0,0')
-                                      };
-                                    });
-
-      bucket.measures.count.byState = _.sortBy(bucketByState, function(stateSummary) {
-                                        return -stateSummary.count;
-                                      })
-                                      .map(function(stateSummary) {
-                                        return {
-                                          state: stateSummary.state,
-                                          //value: stateSummary.count,
-                                          label: numeral(stateSummary.count).format('0,0')
-                                        };
-                                      });
-    });
-
-    // ----------------------
-    // set up graph
-    // ----------------------
-    var margin = {right:163, left:70},
-      width = 500 - margin.left - margin.right,
-      barHeight = 22,
-      height = barHeight * histogram.length;
-
-    var svg = d3.select('.histogram > svg')
-      .attr('width',width + margin.left + margin.right)
-      .attr('height', height )
-    .append('g')
-      .attr('transform','translate(' + margin.left + ',0)');
-
-    // widths for each measure
-    var measureScales = {
-      nil: function(val) {return 0;},
-      sum:   d3.scale.linear()
-             .range([0, width])
-             .domain([0, d3.max(histogram, function(bin) { return bin.measures.sum.value; })]),
-      count: d3.scale.linear()
-             .range([0, width])
-             .domain([0, d3.max(histogram, function(bin) { return bin.measures.count.value; })])
-    }
-
-    // How many bars?
-    var y = d3.scale.ordinal()
-      .rangeRoundBands([0, height], .1)
-      .domain(histogram.map(function(bin, i) {return i;}));
-
-    // bind data
-    var binGs = svg.selectAll('.bar')
-                  .data(histogram)
-                .enter().append('g')
-                  .attr('class','barGroup')
-                  .attr('transform', function(d, i) { return 'translate(0,' + y(i) + ')'; });
+  changeMeasure($(this).attr('data-measure'));
+});
 
 
-    // Render bin and text labels el's (note: rendering with nil/0-state... changeMeasure() sets the actual sizes)
-    var currentMeasure = 'nil';
-
-    // bin labels
-    binGs.append('text')
-      .attr('class','binLabel')
-      .attr('x', '-70')
-      .attr('y', y.rangeBand()-8)
-      .attr('dy', '.35em')
-      .text(function(bucket) {
-          return bucket.label;
-      })
-      .on('click',function(d){
-        clearSelection();
-
-        d3.select(this).classed({'hover':true});
-        d3.select(this.parentNode.childNodes[0]).classed({'hover':true}); // rect
-
-        updateTable(d);
-      });
-
-    // generate bars
-    binGs.append('rect')
-      .attr('class','bar')
-      .attr('width', 2) // 2 to give small visible width
-      .attr('height', y.rangeBand())
-      .on('click',function(d){
-        clearSelection();
-
-        d3.select(this).classed({'hover':true,'clicked':true});
-        d3.select(this.parentNode.childNodes[1]).classed({'hover':true}); // text left
-
-        updateTable(d);
-      });
-
-    // bin measure labels
-    binGs.append('text')
-      .attr('class','binValueLabel')
-      .attr('x', 0)
-      .attr('y',y.rangeBand()-8)
-      .attr('dy','.35em')
-      .text('');
-
-    $('.histogram.loading').hide();
-
-    // ----------------------
-    // events
-    // ----------------------
-
-    /**
-     * Change (and animate) the histogram to show a different measure of the bins
-     * @param {'sum' | 'count' | 'nil'} m Which measure to show
-     */
-    window.changeMeasure = function changeMeasure(m) {
-      if (currentMeasure === m)
-        return;
-      else
-        currentMeasure = m;
-
-      // update the drilldown table
-      updateTable();
-
-      // define common transition
-      d3.transition()
-        .duration(750)
-
-      // apply transition to bars
-      .each(function() {
-        binGs.selectAll('rect').transition()
-        .attr('width', function(bin){return measureScales[m](bin.measures[m].value)+2;}); // plus 2 to give small counts a visible width
-      })
-
-      // apply transition to text labels
-      .each(function() {
-        binGs.selectAll('text.binValueLabel')
-          .style('opacity', 0)
-        .transition()
-          .style('opacity', 1)
-          .attr('x', function(bin) { return measureScales[m](bin.measures[m].value) + 10; })
-          .text(function(bin) { return bin.measures[m].label; })
-      });
-    };
-
-    function clearSelection(){
-      //d3.select('.states').remove();
-      d3.selectAll('rect').classed({'hover':false});
-      d3.selectAll('text').classed({'hover':false});
-    };
-
-    var lastBin;
-    function updateTable(binData){
-
-      if (binData && binData !== lastBin)
-        lastBin = binData;
-      else if (!binData)
-        binData = lastBin;
-      // else, we may be updating measure, re-run anyways.
-
-      if (!binData)
-        return; // no bin has been selected yet
-
-      d3.select('#states-drilldown').style('display', 'table');
-
-      var m = currentMeasure;
-
-      $('#binLabel').html(binData.rangeLabel);
-      $('#binMeasureLabel').html(binData.measures[m].drilldownLabel);
-
-      // clear out previous rows
-      d3.select('#states-drilldown tbody').selectAll('tr').remove();
-
-      //make new rows
-      var rows = d3.select('#states-drilldown tbody').selectAll('tr')
-                   .data(binData.measures[m].byState)
-                 .enter().append('tr');
-
-      rows.append('td')
-      .html(function(d) { return d.state; });
-
-      rows.append('td')
-      .html(function(d) { return d.label; });
-    }
-
-
-    // create scrollspy the starts the histogram when it first comes into view
-    var triggerPageY = $('div.histogram > svg').position().top + 200;
-    function scrollspy() {
-      if (window.pageYOffset + $(window).height() < triggerPageY)
-        return;
-
-      setTimeout(function() {
-        $('.toggle.measure-count').trigger('click');
-      }, 250);
-      $(window).off('scroll', scrollspy);
-    };
-
-    $(window).on('scroll', scrollspy);
-    scrollspy(); // try it once incase user already here
-
-  });
-
-  // ----------------------
-  // page interaction
-  // ----------------------
-  $('.toggle').on('click',function(e){
-    e.preventDefault();
-    $('.toggle').removeClass('active');
-    $(this).toggleClass('active');
-
-    changeMeasure($(this).attr('data-measure'));
-  });
 </script>
+
+
 {% endcapture %}
 
 {% include pledgeSubpage-fullpage.html %}

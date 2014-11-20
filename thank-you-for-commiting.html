@@ -56,7 +56,6 @@ Thank You - Mobile Number
 </div>
 
 {% endcapture %}
-{% capture footer_content %}
 <script type="text/javascript" charset="utf-8" async defer>
   $(document).ready(function(){
     $('#join_form').validate({
@@ -81,7 +80,6 @@ Thank You - Mobile Number
     }
   });
 </script>
-{% endcapture %}
 <!-- form is submited through invisible iframe to skirt around cross-domain issues. -->
 <iframe src="about:blank" name="voting-block-iframe" style="display:none"></iframe>
 {% include subpage.html %}

@@ -1,3 +1,18 @@
+<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.15/angular.min.js"></script>
+<script src="//fgnass.github.io/spin.js/spin.min.js"></script>
+
+<script>
+var validateForm = function() {
+    var re = /\S+@\S+\.\S+/;
+    if (! re.test(document.subscribeForm.email.value))
+    {
+        document.getElementById('error').innerHTML = 'Please enter a valid email address.';
+        return false;
+    }
+    return true;
+};
+</script>
+
 <div id="content" class="row">
     <div class="row">
       <h2 style="text-align:center;">{{ subhead }}</h2>
@@ -83,19 +98,16 @@
 </div>
 
 <script>
-var validateForm = function() {
-  var re = /\S+@\S+\.\S+/;
-  if (! re.test(document.subscribeForm.email.value))
-  {
-    document.getElementById('error').innerHTML = 'Please enter a valid email address.';
-    return false;
+  function getParameterByName(name) {
+      name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
+      var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
+          results = regex.exec(location.search);
+      return results == null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
   }
-  return true;
-};
-// MARIO TODO
+
 $( document ).ready( function() {
-  var email = getParameterByName('email');
-  var source_val = getParameterByName('source');
+  var email = getParameterByName('email'); 
+  var source_val = getParameterByName('source'); 
   var email_input = document.getElementById("email_input");
   var source_input = document.getElementById("sourceElement");
   email_input.value=email;
