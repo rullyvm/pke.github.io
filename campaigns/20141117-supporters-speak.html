@@ -257,8 +257,13 @@ Keep it up!'
 
 {% capture footer_content %}
 <script>
-  $('#carousel-jumbotron').carousel({
-    interval: 9000
+  $("#carousel-jumbotron").on('slide.bs.carousel', function(evt) {
+    window.location.hash = $(evt.relatedTarget).index();
+  })
+  var parsedIndex = parseInt(window.location.hash.replace('#',''))
+  var targetIndex = parsedIndex ? parsedIndex : 0
+  $('#carousel-jumbotron').carousel(targetIndex,{
+    interval: 2000
   });
   $('#carousel-jumbotron .item').carouselHeights();
 </script>
