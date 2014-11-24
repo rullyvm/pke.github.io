@@ -13,6 +13,7 @@ supporters:
     photoAlt: A Atkins
     photoWidth: 500
     photoHeight: 460
+    altText: To Mayday,<br />Don't listen to Naysayers. Influence isn't won in a day. I support Lessig's practical, ironic tactic for the long haul.
   - type: quoteAndImage
     name: Kristofer
     shortName: Kris
@@ -167,6 +168,7 @@ Keep it up!'
 
 .item .container{position:relative; top:50%;transform:translateY(-50%)}
   .imageOnly .container{text-align:center;}
+  .imageOnly .container p{max-width:200px;text-align:left;float:right;}
   .quote-wrap{width:80%;margin:0 auto;padding:15px 20px;background-color:#fff;box-shadow:3px 3px 5px #999;}
     .quote-wrap h4{padding:-;margin:0;}
     .quoteAndImage blockquote{border:none;}
@@ -179,6 +181,7 @@ Keep it up!'
   .social-icons.small a{margin-bottom:10px;}
   .social-icons.small h3{padding-bottom:0;}
 @media screen and (max-width:1024px) {
+  .imageOnly .container p{max-width:400px;text-align:left;margin:0 auto;float:none;margin-top:10px;}
 }
 @media screen and (max-width:650px) {
   .social-icons.small a{margin-bottom:5px;}
@@ -231,6 +234,7 @@ Keep it up!'
             </div>
             {% else %}
               <img class="polaroid" src="/images/campaigns/20141117-supporters-speak/{{supporter.photoFileName}}" alt="{{supporter.photoAlt}}" width="{{supporter.photoWidth}}px" height="{{supporter.photoHeight}}px"/>
+              <p>{{supporter.altText}}</p>
             {% endunless %}
           </div>
         </div>
