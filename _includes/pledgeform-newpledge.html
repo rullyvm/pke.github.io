@@ -1,4 +1,4 @@
-{% capture footer_content %}
+{% capture add_footer_content %}
 <script src="//fgnass.github.io/spin.js/spin.min.js"></script>
 <script src="https://code.jquery.com/jquery-migrate-1.2.1.js"></script>
 <script src="https://checkout.stripe.com/checkout.js"></script>
@@ -75,6 +75,8 @@ limitations under the License.
     });
   </script>
 {% endcapture %}
+{% capture footer_content %}{{footer_content}}{{add_footer_content}}{% endcapture %}
+
 {% if page.disable-pledge-sidebar == null %}
 <link rel="stylesheet" href="{{ site.baseurl }}/css/landing-newpledge.css?4" />
 {% else %}
