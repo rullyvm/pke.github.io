@@ -1,6 +1,6 @@
 # Site settings
-title: MAYDAY.US
-email: info@mayone.us
+title: KAMOJANG
+email: voltus5@gmail.com
 description: "MAYDAY.US - A Crowdfunded, Kickstarted SuperPAC to end all SuperPACs"
 baseurl: ''
 
@@ -12,4 +12,4 @@ exclude: [old]
 
 # Blog & RSS settings
 name: Mayday PAC Blog
-url: https://mayday.us
+url: http://rullyvm.github.io
